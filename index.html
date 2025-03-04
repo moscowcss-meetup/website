@@ -1,146 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moscow CSS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        --grey: rgb(56, 56, 56);
-      }
 
-      .pt-serif-regular {
-        font-family: "PT Serif", serif;
-        font-weight: 400;
-        font-style: normal;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moscow CSS</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      --grey: rgb(56, 56, 56);
+    }
 
-      .pt-serif-bold {
-        font-family: "PT Serif", serif;
-        font-weight: 700;
-        font-style: normal;
-      }
+    .pt-serif-regular {
+      font-family: "PT Serif", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
 
+    .pt-serif-bold {
+      font-family: "PT Serif", serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    body {
+      background: white;
+      color: var(--grey);
+      min-height: 100dvh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .align-center {
+      align-items: center;
+    }
+
+    .gap-5 {
+      gap: 5px;
+    }
+
+    .gap-20 {
+      gap: 20px;
+    }
+
+    .list {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+
+    .center-content {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 0.5em 1em;
+      border: 1px solid var(--grey);
+      border-radius: 0.5em;
+      color: var(--grey);
+    }
+
+    .btn:hover {
+      filter: grayscale(1);
+    }
+
+    @media screen and (prefers-color-scheme: dark) {
       body {
-        background: white;
-        color: var(--grey);
-        min-height: 100dvh;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      .flex {
-        display: flex;
-      }
-
-      .align-center {
-        align-items: center;
-      }
-
-      .gap-5 {
-        gap: 5px;
-      }
-
-      .gap-20 {
-        gap: 20px;
-      }
-
-      .list {
-        list-style-type: none;
-        padding-inline-start: 0;
-      }
-
-      .center-content {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        background: var(--grey);
+        color: white;
       }
 
       .btn {
-        text-decoration: none;
-        padding: 0.5em 1em;
-        border: 1px solid var(--grey);
-        border-radius: 0.5em;
-        color: var(--grey);
+        border: 1px solid white;
+        color: white;
       }
+    }
+  </style>
+</head>
 
-      .btn:hover {
-        filter: grayscale(1);
-      }
-
-      @media screen and (prefers-color-scheme: dark) {
-        body {
-          background: var(--grey);
-          color: white;
-        }
-
-        .btn {
-          border: 1px solid white;
-          color: white;
-        }
-      }
-    </style>
-  </head>
-  <body class="flex center-content">
-    <div>
-      <div class="flex center-content">
-        <picture>
-          <source srcset="./star@2x.png 2x, ./star.png 1x" />
-          <img src="./star.png" alt="" width="50" height="50" />
-        </picture>
-        <h1 class="pt-serif-bold">Moscow CSS</h1>
-      </div>
-      <ul class="flex gap-20 list pt-serif-regular">
-        <li>
-          <a
-            href="https://t.me/moscowcss"
-            class="flex gap-5 align-center btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><img
-              src="./telegram.svg"
-              alt="Телеграм "
-              width="20"
-              height="20"
-            />Канал</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://t.me/moscowcss_chat"
-            class="flex gap-5 align-center btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><img
-              src="./telegram.svg"
-              alt="Телеграм "
-              width="20"
-              height="20"
-            />Чат</a
-          >
-        </li>
-        <li>
-          <a
-            href="http://clc.to/moscowcss_cfp"
-            class="flex gap-5 align-center btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><img
-              src="./google-forms.svg"
-              alt="Гугл формы "
-              width="20"
-              height="20"
-            />Подать заявку</a
-          >
-        </li>
-      </ul>
+<body class="flex center-content">
+  <div>
+    <div class="flex center-content">
+      <picture>
+        <source srcset="./star@2x.png 2x, ./star.png 1x" />
+        <img src="./star.png" alt="" width="50" height="50" />
+      </picture>
+      <h1 class="pt-serif-bold">Moscow CSS</h1>
     </div>
-  </body>
+    <ul class="flex gap-20 list pt-serif-regular">
+      <li>
+        <a href="https://t.me/moscowcss" class="flex gap-5 align-center btn" target="_blank"
+          rel="noopener noreferrer"><img src="./telegram.svg" alt="Телеграм " width="20" height="20" />Канал</a>
+      </li>
+      <li>
+        <a href="https://t.me/moscowcss_chat" class="flex gap-5 align-center btn" target="_blank"
+          rel="noopener noreferrer"><img src="./telegram.svg" alt="Телеграм " width="20" height="20" />Чат</a>
+      </li>
+      <li>
+        <a href="http://clc.to/moscowcss_cfp" class="flex gap-5 align-center btn" target="_blank"
+          rel="noopener noreferrer"><img src="./google-forms.svg" alt="Гугл формы " width="20" height="20" />Подать
+          заявку</a>
+      </li>
+    </ul>
+  </div>
+</body>
+
 </html>
