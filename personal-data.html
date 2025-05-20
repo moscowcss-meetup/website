@@ -69,6 +69,10 @@
         margin-inline-end: 0px;
         unicode-bidi: isolate;
     }
+    .undecorated-link {
+        text-decoration: none;
+        color: inherit;
+    }
 
     @media screen and (prefers-color-scheme: dark) {
       body {
@@ -82,11 +86,13 @@
 <body class="flex center-content">
   <div class="content">
     <div class="flex center-content">
-      <picture>
-        <source srcset="./star@2x.png 2x, ./star.png 1x" />
-        <img src="./star.png" alt="" width="50" height="50" />
-      </picture>
-      <p class="pt-serif-bold h1">Moscow CSS</h1>
+        <a href="/" class="undecorated-link">
+            <picture>
+                <source srcset="./star@2x.png 2x, ./star.png 1x" />
+                <img src="./star.png" alt="" width="50" height="50" />
+            </picture>
+            <p class="pt-serif-bold h1">Moscow CSS</h1>
+        </a>
     </div>
     <h1>Политика обработки персональных данных</h1>
     <ol>
