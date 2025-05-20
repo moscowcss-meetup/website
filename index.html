@@ -40,39 +40,14 @@
       display: flex;
     }
 
-    .align-center {
-      align-items: center;
-    }
-
-    .gap-5 {
-      gap: 5px;
-    }
-
-    .gap-20 {
-      gap: 20px;
-    }
-
-    .list {
-      list-style-type: none;
-      padding-inline-start: 0;
-    }
-
     .center-content {
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
-    .btn {
-      text-decoration: none;
-      padding: 0.5em 1em;
-      border: 1px solid var(--grey);
-      border-radius: 0.5em;
-      color: var(--grey);
-    }
-
-    .btn:hover {
-      filter: grayscale(1);
+    .content {
+        max-width: 600px;
     }
 
     @media screen and (prefers-color-scheme: dark) {
@@ -80,17 +55,12 @@
         background: var(--grey);
         color: white;
       }
-
-      .btn {
-        border: 1px solid white;
-        color: white;
-      }
     }
   </style>
 </head>
 
 <body class="flex center-content">
-  <div>
+  <div class="content">
     <div class="flex center-content">
       <picture>
         <source srcset="./star@2x.png 2x, ./star.png 1x" />
@@ -98,19 +68,24 @@
       </picture>
       <h1 class="pt-serif-bold">Moscow CSS</h1>
     </div>
-    <ul class="flex gap-20 list pt-serif-regular">
+    <p class="pt-serif-regular">
+      Регулярные встречи по фронтенду в Москве
+    </p>
+    <ul class="pt-serif-regular">
       <li>
-        <a href="https://t.me/moscowcss" class="flex gap-5 align-center btn" target="_blank"
-          rel="noopener noreferrer"><img src="./telegram.svg" alt="Телеграм " width="20" height="20" />Канал</a>
+        <a href="https://t.me/moscowcss" target="_blank"
+          rel="noopener noreferrer">Канал</a>
       </li>
       <li>
-        <a href="https://t.me/moscowcss_chat" class="flex gap-5 align-center btn" target="_blank"
-          rel="noopener noreferrer"><img src="./telegram.svg" alt="Телеграм " width="20" height="20" />Чат</a>
+        <a href="https://t.me/moscowcss_chat" target="_blank"
+          rel="noopener noreferrer">Чат</a>
       </li>
       <li>
-        <a href="http://clc.to/moscowcss_cfp" class="flex gap-5 align-center btn" target="_blank"
-          rel="noopener noreferrer"><img src="./google-forms.svg" alt="Гугл формы " width="20" height="20" />Подать
-          заявку</a>
+        <a href="https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e" target="_blank"
+          rel="noopener noreferrer">Податьзаявку</a>
+      </li>
+      <li>
+        <a href="personal-data.html">Политика обработки персональных данных</a>
       </li>
     </ul>
   </div>
