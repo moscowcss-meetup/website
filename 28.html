@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>28 митап MoscowCSS</title>
+    <title>MoscowCSS #28 X МТС Финтех</title>
     <link rel="icon" href="https://css.moscow/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,10 +14,24 @@
         --grey: rgb(56, 56, 56);
     }
 
+    a {
+      text-decoration: none;
+    }
+
+    h2 {
+      margin: 48px 0 24px;
+    }
+
     .pt-serif-regular {
         font-family: "PT Serif", serif;
         font-weight: 400;
         font-style: normal;
+        font-size: 18px;
+    }
+
+    .paragraphs {
+      margin: 36px 0;
+      text-align: justify;
     }
 
     .pt-serif-bold {
@@ -46,7 +60,31 @@
     }
 
     .content {
-        max-width: 600px;
+        margin: 20px 0;
+        padding: 0 12px;
+        max-width: 800px;
+    }
+
+    .logos {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo h1 {
+      margin: 0;
+    }
+
+    .cross:after {
+      display: block;
+      content: "\00d7";
+      margin: 0 4px 12px 0;
+    }
+
+    h1 {
+      margin: 12px 0;
     }
 
     .list-undecorated {
@@ -54,10 +92,51 @@
         padding-inline-start: 0;
     }
 
-    @media screen and (max-width: 768px) {
-        .content {
-            padding: 0 10px;
-        }
+    .speaker {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin: 48px 0;
+    }
+
+    .speaker img {
+      width: 262px;
+      height: 262px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .speaker h1 {
+      margin-top: 0;
+    }
+
+    .links {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .links li {
+      margin-bottom: 12px;
+    }
+
+    .links li:before {
+      content: "—";
+      text-indent: -5px;
+    }
+
+    @media screen and (min-width: 768px) {
+      .logos {
+        flex-direction: row;
+        gap: 24px;
+      }
+
+      .speaker {
+        flex-direction: row;
+      }
+
+      .cross:after {
+        margin: 0 0 12px;
+      }
     }
 
     @media screen and (prefers-color-scheme: dark) {
@@ -73,96 +152,105 @@
 </head>
 <body class="flex center-content">
   <div class="content">
-    <div class="flex center-content">
-      <picture>
-        <source srcset="./star@2x.png 2x, ./star.png 1x" />
-        <img src="./star.png" alt="" width="50" height="50" />
-      </picture>
-      <h1 class="pt-serif-bold">Moscow CSS</h1>
-    </div>
-    <div class="pt-serif-regular">
-        <p>
-            Мы снова собираемся, чтобы обсудить новинки CSS, анимации, разработку дизайн-систем, взаимодействия между командами и развитие инженера!
-        </p>
-        <p>
-            28 встреча пройдёт в офисе МТС Финтех уже через <time datetime="2025-06-26T18:00:00+03:00">26 июня 18:00 МСК</time>! 
-        </p>
-        <p>
-            Чтобы попасть на встречу, нужно <a href="https://moscowcss.timepad.ru/event/3422244/" target="_blank" rel="nofollow noreferrer">зарегистрироваться в сервисе Timepad</a>! 
-        </p>
-        <h2>Площадка</h2>
-        <p>
-            Эту встречу нам помогает организовывать МТС Финтех! 
-        </p>
+    <div class="logos">
+      <div class="logo flex">
         <picture>
-            <source srcset="./partners/mts-fintech@2x.jpg 2x, ./partners/mts-fintech.jpg 1x" />
-            <img src="./partners/mts-fintech.jpg" alt="" width="840" height="223" style="width: 100%; height: auto;"/>
+          <source srcset="./star@2x.png 2x, ./star.png 1x" />
+          <img src="./star.png" alt="" width="30" height="30" style="margin: 5px 10px 0 0;" />
         </picture>
+        <h1 class="pt-serif-bold">MoscowCSS #28</h1>
+      </div>
+      <div class="cross"></div>
+      <div class="logo">
+        <picture>
+          <source srcset="./partners/mts-fintech@2x.jpg 2x, ./partners/mts-fintech.jpg 1x" />
+          <img src="./partners/mts-fintech.jpg" alt="МТС Финтех" width="236"/>
+        </picture>
+      </div>
+    </div>
+    <div class="paragraphs pt-serif-regular">
         <p>
-            А ещё у наших партнёров есть <a href="https://job.mtsbank.ru/it?utm_source=moscowcss_&utm_medium=land_&utm_campaign=css" target="_blank">крутые вакансии</a>, и если вы сейчас в поиске, или хотите узнать о компании больше, заходите и узнавайте.
+            Мы снова собираемся, чтобы обсудить новинки CSS, анимации, разработку дизайн-систем, взаимодействия между командами и&nbsp;развитие инженера.
         </p>
-        <p>Встреча пройдет в офисе компании МТС Финтех по адресу: <a href="https://yandex.ru/maps/-/CHWsQL5R" target="_blank" rel="nofollow noreferrer">г. Москва, проспект Андропова, 18к1</a>. <strong>Вход строго по паспорту!</strong></p>
-        <p>​​​Конференция бесплатная, необходимо только зарегистрироваться. Во время конференции вы сможете задать вопросы спикерам в нашtм чате.  Будьте активными и оставайтесь с нами до конца эфира.</p>
-        <p>Бонус для тех, кто в офлайне – network-party. Так как количество мест ограничено – всего 100, в офлайн смогут попасть не все.  Не расстраивайтесь, если вы не попадете лично. В онлайн-трансляции к просмотру и вашему участию будут доступны все наши доклады.</p>
+        <p>
+            Встреча пройдёт на&nbsp;площадке МТС Финтех 🗓 <time datetime="2025-06-26T18:00:00+03:00">26 июня 18:00 МСК</time>.
+        </p>
+        <p>Адрес: <a href="https://yandex.ru/maps/-/CHWsQL5R" target="_blank" rel="nofollow noreferrer">📍 г. Москва, проспект Андропова, 18к1</a>. <strong>Вход строго по&nbsp;паспорту!</strong></p>
+        <p>​​​Конференция бесплатная, необходимо только <a href="https://moscowcss.timepad.ru/event/3422244/" target="_blank" rel="nofollow noreferrer">зарегистрироваться в сервисе Timepad</a>. <strong>Пожалуйста, дождитесь подтверждения регистрации на почту!</strong></p>
+        <p>Так&nbsp;как количество мест ограничено – всего 100 – в&nbsp;офлайн смогут попасть не&nbsp;все. Не&nbsp;расстраивайтесь, если не&nbsp;попадете лично. Приходите на онлайн-трансляцию и задавайте вопросы спикерам в&nbsp;нашем <a href="https://t.me/moscowcss_chat" target="_blank" rel="noopener noreferrer">чате</a>. Ссылка на трансляцию будет отубликована в нашем <a href="https://t.me/moscowcss" target="_blank" rel="noopener noreferrer">Telegram канале</a>.</p>
+        <p>Бонус для тех, кто в&nbsp;офлайне – network-party.</p>
+        <h2>Наш партнёр</h2>
+        <p>
+          Эту встречу нам помогает организовывать МТС Финтех. У них есть <a href="https://job.mtsbank.ru/it?utm_source=moscowcss_&utm_medium=land_&utm_campaign=css" target="_blank">крутые вакансии</a>, заходите если вы сейчас в поиске или хотите узнать о&nbsp;компании больше. И подходите к ребятам на площадке – они вам всё подробно расскажут!
+        </p>
         <h2>Программа</h2>
         <ol class="list-undecorated">
             <li>
-                <article>
+                <article class="speaker">
+                  <div>
                     <picture>
                         <source srcset="./speakers/anna-rastorgueva@2x.png 2x, ./speakers/anna-rastorgueva.png 1x" />
-                        <img src="./speakers/anna-rastorgueva.png" alt="" width="420" height="420" style="max-width: 100%;" />
+                        <img src="./speakers/anna-rastorgueva.png" alt="" />
                     </picture>
+                  </div>
                     <div>
-                        <h1>«Анимации без js»</h1>
-                        <p><i>Анна Расторгуева — ПАО Сбербанк</i></p>
-                        <p>Современный CSS: мощные анимации без JavaScript — от плавных попапов до скролл-эффектов. Разбираем новые свойства и фишки, которые заменяют JS.</p>
+                      <h1>Анимации без js</h1>
+                      <p><i>Анна Расторгуева — ПАО Сбербанк</i></p>
+                      <p>Современный CSS: мощные анимации без JavaScript — от&nbsp;плавных попапов до&nbsp;скролл-эффектов. Разбираем новые свойства и&nbsp;фишки, которые заменяют JS.</p>
                     </div>
                 </article>
             </li>
             <li>
-                <article>
-                    <!-- <img src="" alt="" width="" height=""> -->
+                <article class="speaker">
+                  <div>
+                    <picture>
+                        <source srcset="./speakers/alexandr-nikulin.png 2x, ./speakers/alexandr-nikulin.png 1x" />
+                        <img src="./speakers/alexandr-nikulin.png" alt="" />
+                    </picture>
+                  </div>
                     <div>
-                        <h1>«Дизайн-система: от Figma к коду. Как «поженить» 2 мира и построить эффективный мост между дизайном и разработкой»</h1>
+                        <h1>Дизайн-система: от&nbsp;Figma к&nbsp;коду. Как «поженить» 2 мира и&nbsp;построить эффективный мост между дизайном и&nbsp;разработкой</h1>
                         <p><i>Александр Никулин — Руководитель центра дизайн-системы МТС Финтех</i></p>
-                        <p>В настоящий момент дизайн-системы стали ключевым инструментом для ускорения разработки, обеспечения консистентности и масштабируемость интерфейсов. В своем докладе я расскажу о том, как круто может работать реальная дизайн-система и что для этого нужно! </p>
+                        <p>В настоящий момент дизайн-системы стали ключевым инструментом для ускорения разработки, обеспечения консистентности и&nbsp;масштабируемость интерфейсов. В своем докладе я&nbsp;расскажу о&nbsp;том, как круто может работать реальная дизайн-система и&nbsp;что для&nbsp;этого нужно! </p>
                     </div>
                 </article>
             </li>
             <li>
-                <article>
-                    <!-- <img src="" alt="" width="" height=""> -->
+                <article class="speaker">
+                  <div>
+                    <picture>
+                        <source srcset="./speakers/anton-volkov.png 2x, ./speakers/anton-volkov.png 1x" />
+                        <img src="./speakers/anton-volkov.png" alt="" />
+                    </picture>
+                  </div>
                     <div>
-                        <h1>«Почему передача знаний — это буст для роста и карьеры»</h1>
-                        <p><i>Антон Волков — Co-Founder и CEO в Solvery.io</i></p>
-                        <p>А вот пока небольшой секрет о чём будет доклад.</p>
+                        <h1>Почему передача знаний — это буст для роста и карьеры</h1>
+                        <p><i>Антон Волков — Co-Founder и&nbsp;CEO в&nbsp;Solvery.io</i></p>
+                        <p>А вот пока небольшой секрет о&nbsp;чём будет доклад.</p>
                     </div>
                 </article>
             </li>
         </ol>
-        <h2>И это не всё</h2>
+        <h2>И это не всё!</h2>
         <picture>
             <source srcset="./partners/doka-on-dark.svg" media="(prefers-color-scheme: dark)">
-            <img src="./partners/doka-on-white.svg" alt="" width="1240" height="432" style="max-width: 50%; height: auto;" />
+            <img src="./partners/doka-on-white.svg" alt="" style="max-width: 100px;" />
         </picture>
-        <p>Но это не все! Рады сообщить, что теперь мы официально дружим <a href="https://doka.guide/?utm_source=moscowcss&utm_medium=page&utm_content=anounce28" target="_blank" rel="nofollow noreferrer">с Докой</a> 🤝</p>
-        <p>Там всегда можно почитать понятные статьи от разработчиков для разработчиков. Также ребята рады помочь вам и пообщаться <a href="https://t.me/+SDRqoKfhVbQ3YzAy" target="_blank" rel="nofollow noreferrer">в чате</a>.</p>
+        <p>Рады сообщить, что теперь мы&nbsp;официально дружим <a href="https://doka.guide/?utm_source=moscowcss&utm_medium=page&utm_content=anounce28" target="_blank" rel="nofollow noreferrer">с Докой</a> 🤝</p>
+        <p>Там всегда можно почитать понятные статьи от&nbsp;разработчиков для разработчиков. Также ребята рады помочь вам и&nbsp;пообщаться <a href="https://t.me/+SDRqoKfhVbQ3YzAy" target="_blank" rel="nofollow noreferrer">в&nbsp;чате</a>.</p>
         <h2>Полезные ссылки</h2>
-        <ul>
-            <li>
-                <a href="https://moscowcss.timepad.ru/event/3422244/" target="_blank" rel="nofollow noreferrer">Регистрация в сервисе Timepad</a>
-            </li>
+        <ul class="links">
             <li>
                 <a href="https://t.me/moscowcss" target="_blank"
-                rel="noopener noreferrer">Канал</a>
+                rel="noopener noreferrer">Канал MoscowCSS</a>
             </li>
             <li>
                 <a href="https://t.me/moscowcss_chat" target="_blank"
-                rel="noopener noreferrer">Чат</a>
+                rel="noopener noreferrer">Чат MoscowCSS</a>
             </li>
             <li>
                 <a href="https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e" target="_blank"
-                rel="noopener noreferrer">Подать заявку</a>
+                rel="noopener noreferrer">Подать заявку на выступление</a>
             </li>
             <li>
                 <a href="personal-data.html">Политика обработки персональных данных</a>
