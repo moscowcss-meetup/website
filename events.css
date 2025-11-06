@@ -80,11 +80,39 @@ h1 {
     padding-inline-start: 0;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .speaker {
     display: flex;
     flex-direction: column;
     gap: 32px;
     margin: 48px 0;
+    text-align: left;
+}
+
+.speaker_recalled img {
+    filter: grayscale();
+}
+
+.speaker_recalled div:not(:hover) {
+    filter: blur(2px);
+}
+
+.speaker_replacement {
+    position: relative;
+}
+
+.speaker_replacement::before {
+    content: 'Доклад на замену';
+    position: absolute;
+    top: 3rem;
+    right: 0;
+    rotate: 45deg;
+    border: 1px solid red;
+    color: red;
+    padding: 0 1rem;
 }
 
 .speaker img {
@@ -112,6 +140,17 @@ h1 {
     text-indent: -5px;
 }
 
+.after-replace-icon::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin: 0;
+    background-image: url(./replace.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 @media screen and (min-width: 768px) {
     .logos {
     flex-direction: row;
@@ -124,6 +163,10 @@ h1 {
 
     .cross:after {
     margin: 0 0 12px;
+    }
+
+    .speaker_replacement::before {
+        right: -5rem;
     }
 }
 
