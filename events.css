@@ -53,6 +53,10 @@ body {
     max-width: 800px;
 }
 
+.color-red {
+    color: red;
+}
+
 .logos {
     display: flex;
     flex-direction: column;
