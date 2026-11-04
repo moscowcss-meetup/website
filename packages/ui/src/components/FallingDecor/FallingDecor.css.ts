@@ -16,11 +16,6 @@ const fallDown = keyframes({
   to: { transform: 'translateY(115vh)' },
 });
 
-const spinAroundAxis = keyframes({
-  from: { transform: 'rotateY(0deg)' },
-  to: { transform: 'rotateY(360deg)' },
-});
-
 const spinFlat = keyframes({
   from: { transform: 'rotate(0deg)' },
   to: { transform: 'rotate(360deg)' },
@@ -41,33 +36,37 @@ const shapeBase = {
   transitionProperty: 'color, opacity',
   transitionDuration: vars.motion.duration.base,
   transitionTimingFunction: vars.motion.easing.standard,
-  animationTimingFunction: vars.motion.easing.linear,
-  animationIterationCount: 'infinite',
-  willChange: 'transform',
 } as const;
 
+// Контур пружинки каждый кадр считает скрипт: так она по-настоящему вращается вокруг своей оси.
 export const spring = style({
   ...shapeBase,
-  animationName: spinAroundAxis,
   height: vars.adaptive.decorSpringHeight,
 });
 
 globalStyle(`${spring} svg`, {
   display: vars.display.block,
-  width: 'auto',
+  width: '100%',
   height: '100%',
   overflow: 'visible',
 });
 
 // Формы в макете разного размера, а линия у всех одной толщины.
 globalStyle(`${spring} path`, {
+  stroke: 'currentColor',
   strokeWidth: vars.border.width.medium,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
   vectorEffect: 'non-scaling-stroke',
+});
+
+// Витки за осью бледнее: глаз читает это как глубину.
+export const springBack = style({
+  opacity: 0.45,
 });
 
 export const snow = style({
   ...shapeBase,
-  animationName: spinFlat,
   width: vars.adaptive.decorSnowSize,
   height: vars.adaptive.decorSnowSize,
 });
@@ -76,11 +75,15 @@ globalStyle(`${snow} svg`, {
   display: vars.display.block,
   width: '100%',
   height: '100%',
+  animationName: spinFlat,
+  animationTimingFunction: vars.motion.easing.linear,
+  animationIterationCount: 'infinite',
+  willChange: 'transform',
 });
 
 const tone = (color: string) => style({ color });
 
-// Порядок совпадает с формами в FallingDecor.astro.
+// Порядок совпадает с формами в helix.ts.
 export const springTones = [tone(vars.color.tagSky), tone(vars.color.tagOrange), tone(vars.color.tagBlue)];
 
 export const snowTones = [

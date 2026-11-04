@@ -181,8 +181,6 @@ export const createOrganizerSchema = (image: ImageFunction) =>
           website: url.optional(),
         })
         .optional(),
-      // Порядок карточек: меньше — левее.
-      order: z.number().int().nonnegative().default(0),
       draft: z.boolean().default(false),
     })
     .refine(

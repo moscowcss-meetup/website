@@ -43,6 +43,8 @@ export interface FallingItem {
   delayMs: number;
   /** Время одного оборота вокруг своей оси, мс */
   spinMs: number;
+  /** Куда вращается */
+  clockwise: boolean;
   /** Масштаб фигуры */
   scale: number;
   /** Случайное число для выбора фигуры и цвета */
@@ -59,7 +61,8 @@ export function fallingItems(count: number, random: Random): FallingItem[] {
       leftPercent: ((index + random()) / count) * 100,
       fallMs,
       delayMs: -random() * fallMs,
-      spinMs: between(8000, 16000, random),
+      spinMs: between(3000, 6000, random),
+      clockwise: random() < 0.5,
       scale: between(0.7, 1.2, random),
       pick: random(),
     };

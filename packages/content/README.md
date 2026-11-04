@@ -40,7 +40,7 @@ pnpm new:organizer anna-ivanova
 
 1. Заполните `name` и `contacts` и напишите текст о человеке в `organizers/ru/anna-ivanova.md` и
    `organizers/en/anna-ivanova.md`.
-2. Оставьте `status: current`, задайте `order`: меньше — левее.
+2. Оставьте `status: current`.
 3. Положите фото в `organizers/assets/anna-ivanova.png` и добавьте в оба файла строки `photo` и
    `photoAlt`, как в примере. Фото необязательно, подробности в разделе «Ассеты».
 4. Уберите `draft: true` из обоих файлов.
@@ -55,7 +55,6 @@ contacts:
   telegram: https://t.me/anna_ivanova
   github: https://github.com/anna-ivanova
   website: https://anna.example
-order: 2
 ---
 
 - Руководитель фронтенда в Компании
@@ -304,11 +303,13 @@ src/
 | `status` | да | `current` — текущий организатор, он показывается на главной; `past` — бывший. |
 | `photo`, `photoAlt` | нет | Фото: `../assets/<имя>.png` в `organizers/assets/` (прозрачный фон, вырезанный силуэт) и описание, что на нём. Без фото блок фото на карточке не выводится; описание обязательно, если есть фото. |
 | `contacts` | нет | `telegram` (`https://t.me/<имя>`), `github` (`https://github.com/<имя>`), `website` (любой `https`): все необязательные. На карточке выводятся в этом порядке и только заполненные. |
-| `order` | нет | Порядок карточек: меньше — левее. |
 | `draft` | нет | `true` — черновик. |
 | текст файла | нет | Должность, роли в сообществах: Markdown, список или абзац. |
 
 Новый организатор появляется на главной без правки кода: достаточно файлов в обоих языках со статусом `current`.
+
+Порядка у организаторов нет: они равноправны, и при каждой загрузке страницы карточки идут в случайном
+порядке.
 
 ### `faq` — вопрос из «ЧАВО»
 
@@ -347,7 +348,7 @@ HTML: пояснения пишите в frontmatter строкой с `#`.
 - доклад: `event`, `speakers`, `time`, `slidesUrl`, `videoUrl`;
 - спикер: `photo`, `links`;
 - партнёр: `url`, `handle`, `logo`, `qrUrl`;
-- организатор: `status`, `photo`, `contacts`, `order`;
+- организатор: `status`, `photo`, `contacts`;
 - вопрос FAQ: `order`;
 - главная: `telegramUrl`, `questionTag`, `decor`.
 

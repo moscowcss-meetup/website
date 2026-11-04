@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import { Snowflake, Spring1, Spring2, Spring3 } from '@moscowcss/icons';
-import { fall, muted, root, snow, snowTones, spring, springTones } from './FallingDecor.css';
+import { Snowflake } from '@moscowcss/icons';
+import { fall, muted, root, snow, snowTones, spring, springBack, springTones } from './FallingDecor.css';
 
 const Tag = 'div';
 
@@ -12,21 +12,11 @@ interface Props extends HTMLAttributes<typeof Tag> {
 
 const { kind = 'springs', class: className, ...attrs } = Astro.props;
 
-const classes = JSON.stringify({ fall, spring, snow, muted, springTones, snowTones });
+const classes = JSON.stringify({ fall, spring, springBack, snow, muted, springTones, snowTones });
 ---
 <Tag class:list={[root, className]} data-falling-decor data-kind={kind} data-classes={classes} aria-hidden="true" {...attrs}>
   <template>
-    {
-      kind === 'snow' ? (
-        <Snowflake />
-      ) : (
-        <>
-          <Spring1 />
-          <Spring2 />
-          <Spring3 />
-        </>
-      )
-    }
+    {kind === 'snow' && <Snowflake />}
   </template>
 </Tag>
 

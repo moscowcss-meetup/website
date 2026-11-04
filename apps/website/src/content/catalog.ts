@@ -78,7 +78,7 @@ const INVARIANTS = {
   talks: ['event', 'speakers', 'time', 'slidesUrl', 'videoUrl'],
   speakers: ['photo', 'links'],
   partners: ['url', 'handle', 'logo', 'qrUrl'],
-  organizers: ['status', 'photo', 'contacts', 'order'],
+  organizers: ['status', 'photo', 'contacts'],
   faq: ['order'],
   documents: [],
   pages: ['telegramUrl', 'questionTag', 'decor'],

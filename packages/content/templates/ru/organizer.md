@@ -3,7 +3,6 @@ name: "Имя Фамилия"
 status: current
 contacts:
   telegram: https://t.me/username
-order: 1
 draft: true
 # Черновик. status: current — на главной, past — бывший организатор. Фото необязательно: без него
 # блок фото не выводится. С фото положите файл в organizers/assets/{{name}}.png и добавьте строки

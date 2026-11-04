@@ -17,13 +17,12 @@ import {
   telegram,
   meta,
   metaAddress,
-  metaLink,
+  metaToggle,
   overlay,
   overlayLinks,
   overlayLink,
   overlayFooter,
   overlayAddress,
-  overlayTelegram,
 } from './NavBar.css';
 
 const Tag = 'nav';
@@ -36,8 +35,6 @@ interface Props extends HTMLAttributes<typeof Tag> {
   telegramHref: string;
   /** Подпись кнопки со ссылкой на Telegram */
   telegramButtonLabel: string;
-  /** Адрес Telegram без протокола: подпись ссылки в строке под шапкой и в меню */
-  telegramText: string;
   /** Подпись чекбокса, который выключает падающие фигуры */
   decorOffLabel: string;
   /** Доступное имя кнопки открытия меню */
@@ -58,7 +55,6 @@ const {
   links: navLinks,
   telegramHref,
   telegramButtonLabel,
-  telegramText,
   decorOffLabel,
   menuLabel,
   closeLabel,
@@ -122,14 +118,12 @@ const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
       <DecorToggle label={decorOffLabel} />
       <Button href={telegramHref} size="nav" {...external}>{telegramButtonLabel}</Button>
       {addressLine && <p class={overlayAddress}>{addressLine}</p>}
-      <a class={overlayTelegram} href={telegramHref} {...external}>{telegramText}</a>
     </div>
   </div>
 </Tag>
 <div class={meta}>
   {addressLine && <p class={metaAddress}>{addressLine}</p>}
-  <DecorToggle label={decorOffLabel} />
-  <a class={metaLink} href={telegramHref} {...external}>{telegramText}</a>
+  <DecorToggle class={metaToggle} label={decorOffLabel} />
 </div>
 
 <script>

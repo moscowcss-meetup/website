@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { dimensions, vars, media } from '@moscowcss/design-system';
 
 const focusRing = {
@@ -62,8 +62,8 @@ export const home = style({
 
 export const links = style({
   display: vars.display.none,
-  alignItems: vars.alignItems.center,
-  gap: vars.adaptive.navLinksGap,
+  // Вся высота шапки, которую задаёт кнопка Telegram, и промежутки между пунктами кликабельны.
+  alignSelf: vars.alignItems.stretch,
   margin: '0 auto',
   padding: 0,
   listStyle: 'none',
@@ -74,11 +74,16 @@ export const links = style({
   },
 });
 
+globalStyle(`${links} > li`, {
+  display: vars.display.flex,
+});
+
 export const link = style({
   display: vars.display.flex,
   alignItems: vars.alignItems.center,
   minWidth: vars.size.hitTarget,
   minHeight: vars.size.hitTarget,
+  paddingInline: `calc(${vars.adaptive.navLinksGap} / 2)`,
   color: vars.color.text,
   font: vars.font.shorthand.navMeta,
   textDecoration: 'none',
@@ -183,20 +188,8 @@ export const metaAddress = style({
   margin: 0,
 });
 
-export const metaLink = style({
+export const metaToggle = style({
   marginInlineStart: 'auto',
-  display: vars.display.flex,
-  alignItems: vars.alignItems.center,
-  minHeight: vars.size.hitTarget,
-  color: vars.color.text,
-  textDecoration: 'none',
-  ...fade,
-  selectors: {
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-    '&:focus-visible': focusRing,
-  },
 });
 
 // Шапка остаётся над панелью, поэтому панель отступает на высоту полосы: поля, зона нажатия, промежуток, разделитель.
@@ -277,21 +270,4 @@ export const overlayFooter = style({
 
 export const overlayAddress = style({
   margin: 0,
-});
-
-export const overlayTelegram = style({
-  display: vars.display.flex,
-  alignItems: vars.alignItems.center,
-  minHeight: vars.size.hitTarget,
-  color: vars.color.text,
-  textDecoration: 'none',
-  opacity: 0.6,
-  ...fade,
-  selectors: {
-    '&:hover': {
-      opacity: 1,
-      textDecoration: 'underline',
-    },
-    '&:focus-visible': focusRing,
-  },
 });

@@ -19,7 +19,7 @@ export interface OrganizerContacts {
 }
 
 /**
- * Опубликованные организаторы одного языка с нужным статусом, по `order`, при равном — по id.
+ * Опубликованные организаторы одного языка с нужным статусом, по id: страница показывает их в случайном порядке, а это порядок без скрипта.
  * Список одного языка отдаёт вызывающий: так выборкой пользуются и главная, и страница о митапе.
  */
 export function organizersByStatus<T extends Pick<OrganizerEntry, 'id' | 'data'>>(
@@ -28,7 +28,7 @@ export function organizersByStatus<T extends Pick<OrganizerEntry, 'id' | 'data'>
 ): T[] {
   return entries
     .filter((entry) => !entry.data.draft && entry.data.status === status)
-    .sort((a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id));
+    .sort((a, b) => a.id.localeCompare(b.id));
 }
 
 const pathOf = (url: URL): string => url.pathname.replace(/^\/+|\/+$/g, '');

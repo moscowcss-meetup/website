@@ -572,8 +572,8 @@ regenerate rather than edit).
 - **Organizers.** `organizers/<lang>/<name>.md`, photos in `organizers/assets/`
   (optional, with `photoAlt`). `status: current | past` is required and must match
   between languages; `contacts.telegram|github|website` are optional `https`
-  URLs and must match too. The home page shows only `current` entries after the FAQ
-  (`OrganizersSection`, card `OrganizerCard`); `organizersByStatus` and
+  URLs and must match too. The home page shows only `current` entries after the FAQ,
+  in a random order on every load (`OrganizersSection`, card `OrganizerCard`); `organizersByStatus` and
   `contactsOf` in `src/content/organizers.ts` are the pure selectors, so a future
   about-page can list `past` ones from the same collection. Create with
   `pnpm new:organizer <name>`; a new entry needs no code change.

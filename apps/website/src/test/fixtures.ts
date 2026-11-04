@@ -87,7 +87,6 @@ export function organizer(id: string, data: Partial<OrganizerData> = {}): Organi
       name: 'Роман Троицкий',
       status: 'current',
       contacts: { telegram: 'https://t.me/DreamShaded', website: 'https://vzhyx.io' },
-      order: 1,
       draft: false,
       ...data,
     },

@@ -33,7 +33,7 @@ const cards = await Promise.all(
     <section class={section} data-visual="organizers">
       <div class={inner}>
         <BlockTitle>{t('organizers.title')}</BlockTitle>
-        <ul class={list}>
+        <ul class={list} data-organizers>
           {cards.map(({ data, Bio }) => (
             <li class={item}>
               <OrganizerCard
@@ -64,3 +64,12 @@ const cards = await Promise.all(
     </section>
   )
 }
+
+<script>
+  import { shuffled } from '../content/shuffle';
+
+  // Организаторы равноправны: порядок свой при каждой загрузке, а сайт статический, поэтому мешаем в браузере.
+  document.querySelectorAll('[data-organizers]').forEach((list) => {
+    list.append(...shuffled([...list.children], Math.random));
+  });
+</script>

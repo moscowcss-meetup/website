@@ -88,14 +88,16 @@ globalStyle(`${bio} ul`, {
   listStyle: 'none',
 });
 
+// Не flex: текст и ссылка внутри пункта стали бы отдельными колонками.
 globalStyle(`${bio} ul > li`, {
-  display: vars.display.flex,
-  gap: vars.spacing.s,
+  position: vars.position.relative,
+  paddingInlineStart: `calc(1ch + ${vars.spacing.s})`,
 });
 
 globalStyle(`${bio} ul > li::before`, {
   content: '">"',
-  flex: '0 0 auto',
+  position: vars.position.absolute,
+  insetInlineStart: 0,
 });
 
 globalStyle(`${bio} a`, {

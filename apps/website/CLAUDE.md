@@ -63,7 +63,7 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
 - **Organizers** are read through `src/content/organizers.ts`
   (`organizersByStatus`, `contactsOf`: pure, tested) and rendered by
   `sections/OrganizersSection.astro` after the FAQ with `OrganizerCard`; only
-  `status: current` shows on the home page. The agent Markdown twins and JSON-LD do
+  `status: current` shows on the home page, shuffled in the browser (`src/content/shuffle.ts`). The agent Markdown twins and JSON-LD do
   not list organizers yet.
 - **Hero and the floating button.** The Hero shows the meetup modes and its
   `tags` as a `TagPile`; the floating `CallToAction` renders only for an upcoming

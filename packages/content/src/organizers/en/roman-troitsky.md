@@ -6,7 +6,6 @@ photoAlt: "Roman Troitsky"
 contacts:
   telegram: https://t.me/DreamShaded
   website: https://vzhyx.io
-order: 1
 ---
 
 - Head of data research at Sberbank

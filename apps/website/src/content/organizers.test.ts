@@ -4,18 +4,18 @@ import { contactsOf, organizersByStatus } from './organizers';
 
 describe('organizersByStatus', () => {
   const entries = [
-    organizer('ru/anna', { status: 'past', order: 2 }),
-    organizer('ru/boris', { status: 'current', order: 2 }),
-    organizer('ru/roman', { status: 'current', order: 1 }),
-    organizer('ru/draft', { status: 'current', order: 0, draft: true }),
-    organizer('ru/clara', { status: 'current', order: 2 }),
+    organizer('ru/anna', { status: 'past' }),
+    organizer('ru/boris', { status: 'current' }),
+    organizer('ru/roman', { status: 'current' }),
+    organizer('ru/draft', { status: 'current', draft: true }),
+    organizer('ru/clara', { status: 'current' }),
   ];
 
-  it('current: без прошлых и черновика, по order, при равном порядке — по имени файла', () => {
+  it('current: без прошлых и черновика, по имени файла', () => {
     expect(organizersByStatus(entries, 'current').map((entry) => entry.id)).toEqual([
-      'ru/roman',
       'ru/boris',
       'ru/clara',
+      'ru/roman',
     ]);
   });
 

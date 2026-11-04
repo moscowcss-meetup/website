@@ -53,11 +53,7 @@ const homePage = catalog.pages.find((entry) => entry.id === `${lang}/index`);
 if (!homePage) throw new Error(`Missing page content: pages/${lang}/index.md`);
 const { telegramUrl: telegramHref, decor } = homePage.data;
 
-// Подпись ссылки на Telegram — адрес без протокола и хвостового слэша.
-const telegramUrl = new URL(telegramHref);
-const telegramText = `${telegramUrl.host}${telegramUrl.pathname}`.replace(/\/$/, '');
-
-// Адрес в шапке — того же митапа, что показывает главная; без адреса строка остаётся только с Telegram.
+// Адрес в шапке — того же митапа, что показывает главная; без адреса в строке остаётся только чекбокс.
 const addressLine = upcomingEvent(
   catalog.events.filter((entry) => localeOf(entry) === lang),
   buildNow(),
@@ -161,7 +157,6 @@ const localeOptions = locales.map((code) => ({
       homeText={t('hero.title')}
       telegramHref={telegramHref}
       telegramButtonLabel={t('nav.telegramButton')}
-      telegramText={telegramText}
       addressLine={addressLine}
       decorOffLabel={t(`decor.off.${decor}`)}
       menuLabel={t('nav.menu')}
