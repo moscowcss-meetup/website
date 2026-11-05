@@ -93,15 +93,15 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   replaces the generated OG and Twitter cards: the `og/` route crops it to size with sharp. The
   file path comes from the frontmatter (`coverFileOf`), because the parsed field has no path.
 - **Header** links go across the site, not to home sections: History (`/events/`), Talks,
-  Speakers, About (`/about/`), Search (`src/layouts/nav.ts`); the current section gets
+  Speakers, About (`/about/`, which also holds the Contacts section), Search (`src/layouts/nav.ts`); the current section gets
   `aria-current`. Registration is the floating button.
 - **Documents** (`documents` collection) render at `/<name>/` via
   `pages/[...locale]/[document].astro` and are public pages in `src/seo/pages.ts`
   (kind `document`, no JSON-LD). The meetup page hides the registration link once
   the meetup is past (`src/content/event-links.ts`, "now" from `src/content/now.ts`).
 - **Legacy addresses** of the old site (`/28.html`, `/29.html`, `/30.html`,
-  `/personal-data.html`, and `/personal-data/` + `/en/personal-data/` where the
-  policy lived before `/privacy/`) are noindex stub pages with a meta refresh to the new
+  `/personal-data.html`, `/personal-data/` + `/en/personal-data/` where the
+  policy lived before `/privacy/`, and `/contact/` + `/en/contact/`, now the Contacts section of `/about/`) are noindex stub pages with a meta refresh to the new
   address: one `pages/<name>.html.ts` per address, table and HTML in
   `src/seo/legacy.ts`. Not a `[legacy].html` dynamic route: Astro 7 loses its
   param.

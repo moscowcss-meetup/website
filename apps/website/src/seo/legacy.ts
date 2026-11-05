@@ -11,13 +11,19 @@ export const LEGACY_REDIRECTS = {
   // Политика жила на /personal-data/ до переноса на /privacy/: этот адрес ищут агенты.
   'personal-data/index.html': '/privacy/',
   'en/personal-data/index.html': '/en/privacy/',
+  // Контакты слились со страницей «О митапе» (раздел «Контакты»); id раздела — slug заголовка.
+  'contact/index.html': '/about/#%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B',
+  'en/contact/index.html': '/en/about/#contacts',
 } as const;
 
 export type LegacyName = keyof typeof LEGACY_REDIRECTS;
 
 /** HTML-заглушка: переход, canonical на новый адрес, noindex и видимая ссылка. */
 export function legacyStubOf(target: string, site: URL, siteName: string, lang: string): string {
-  const canonical = new URL(target, site).href;
+  const url = new URL(target, site);
+  // Якорь — для перехода к разделу; в canonical он лишний: каноническая страница одна.
+  url.hash = '';
+  const canonical = url.href;
   return `<!doctype html>
 <html lang="${lang}">
 <head>

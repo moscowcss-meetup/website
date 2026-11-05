@@ -25,7 +25,7 @@ attempts: 0
 ## Done when
 - [x] `pnpm build && pnpm --filter website check:seo` зелёные, у каждой страницы `index.md`: AC-1.
 - [x] Тесты `markdown.test.ts`, `discovery.test.ts`, `jsonld.test.ts`, `webmcp.test.ts` зелёные: AC-2, AC-3, AC-4, AC-5, AC-7, AC-8.
-- [x] `dist/about/index.html`, `dist/contact/index.html` и английские версии собраны, в `<head>` — `rel="privacy-policy"`: AC-6.
+- [x] `dist/about/index.html` и английская версия собраны (контакты — раздел страницы), в `<head>` — `rel="privacy-policy"`: AC-6.
 - [x] `pnpm lint`, `pnpm test`, `pnpm build`, `build:storybook` зелёные, `curl` по живому сайту отдаёт файлы: AC-9.
 
 ## Must not

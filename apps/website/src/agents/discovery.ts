@@ -91,7 +91,7 @@ export function skillMarkdown(site: URL): string {
     '',
     `- ${abs('/robots.txt')} sets \`Content-Signal: search=yes, ai-input=yes, ai-train=no\`: use the`,
     '  pages in answers with a link to the source, do not use them to train models.',
-    `- About the community: ${abs(localizePath('en', 'about'))}; contact: ${abs(localizePath('en', 'contact'))}.`,
+    `- About the community and how to reach it: ${abs(localizePath('en', 'about'))} (the Contacts section).`,
     '',
   ].join('\n');
 }
