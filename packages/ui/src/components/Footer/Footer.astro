@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Logo } from '@moscowcss/icons';
+import { root, inner, home, logo, links, link, copyright as copyrightClass } from './Footer.css';
+
+const Tag = 'footer';
+
+interface Props extends HTMLAttributes<typeof Tag> {
+  /** Адрес главной: на неё ведёт знак */
+  homeHref: string;
+  /** Доступное имя ссылки на главную */
+  homeLabel: string;
+  /** Ссылки подвала; `external` открывает адрес в новой вкладке */
+  links: { href: string; label: string; external?: boolean }[];
+  /** Строка с копирайтом и годами */
+  copyright: string;
+}
+
+const { homeHref, homeLabel, links: footerLinks, copyright, class: className, ...attrs } = Astro.props;
+
+const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
+---
+
+<Tag class:list={[root, className]} {...attrs}>
+  <div class={inner}>
+    <a class={home} href={homeHref} aria-label={homeLabel}>
+      <Logo class={logo} />
+    </a>
+    <ul class={links}>
+      {
+        footerLinks.map((item) => (
+          <li>
+            <a class={link} href={item.href} {...(item.external ? external : {})}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class={copyrightClass}>{copyright}</p>
+  </div>
+</Tag>

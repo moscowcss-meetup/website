@@ -3,6 +3,7 @@ import '@moscowcss/fonts';
 import '@moscowcss/design-system';
 import '../styles/global.css';
 import FallingDecor from '@moscowcss/ui/components/FallingDecor';
+import Footer from '@moscowcss/ui/components/Footer';
 import NavBar from '@moscowcss/ui/components/NavBar';
 import LocaleSwitcher from '@moscowcss/ui/components/LocaleSwitcher';
 import {
@@ -21,6 +22,7 @@ import { AI_CATALOG_PATH, ARD_PATH } from '../agents/discovery';
 import { markdownPathOf } from '../agents/paths';
 import { archiveDataPath } from '../agents/archive-data';
 import { feedPath } from '../rss/feed';
+import { copyrightOf, footerLinksOf } from './footer';
 import { navLinksOf } from './nav';
 import SkipLink from '../components/SkipLink.astro';
 import { themeInitScript } from '@moscowcss/ui/components/ThemeToggle';
@@ -177,6 +179,13 @@ const localeOptions = locales.map((code) => ({
       </Fragment>
     </NavBar>
     <slot />
+    <Footer
+      homeHref={localizePath(lang)}
+      homeLabel={t('nav.home')}
+      links={footerLinksOf(lang, t, telegramHref)}
+      copyright={copyrightOf(t, buildNow())}
+      data-visual="footer"
+    />
     <FallingDecor kind={decor} />
   </body>
 </html>

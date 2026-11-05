@@ -626,8 +626,8 @@ regenerate rather than edit).
   it came from) and `.visual/hero-09`. Capture with `BUILD_NOW` pinned.
   See `tools/visual/README.md`. `tools/visual/check-targets.mjs` is a separate
   gate: it opens the built site (`astro preview --host 127.0.0.1`) at 375 and 1440
-  and fails (exit 1) when a link or button of the header, menu, slider or language
-  switcher is smaller than 42×42 or has no `:focus-visible` outline in
+  and fails (exit 1) when a link or button of the header, menu, slider, language
+  switcher or footer is smaller than 42×42 or has no `:focus-visible` outline in
   `rgb(56, 69, 207)` of at least 1px. On Windows set `CHROMIUM_PATH`.
 
 ---

@@ -18,11 +18,11 @@ const { class: className, href, type = 'button', ...attrs } = props;
 ---
 
 {href != null ? (
-  <a href={href} class:list={[root, className]} {...attrs}>
+  <a href={href} class:list={[root, className]} data-floating-cta {...attrs}>
     <span class={face}><slot /></span>
   </a>
 ) : (
-  <button type={type} class:list={[root, className]} {...attrs}>
+  <button type={type} class:list={[root, className]} data-floating-cta {...attrs}>
     <span class={face}><slot /></span>
   </button>
 )}

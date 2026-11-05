@@ -10,7 +10,7 @@ const PAGE_TIMEOUT_MS = 30_000;
 // Ниже этой ширины навигация живёт в меню за бургером: перед обходом его открываем.
 const MENU_MAX_WIDTH = 767;
 
-const SELECTORS = ['[data-navbar] a', '[data-navbar] button', '[data-card-slider] button', 'a[hreflang]'];
+const SELECTORS = ['[data-navbar] a', '[data-navbar] button', '[data-card-slider] button', 'a[hreflang]', 'body > footer a'];
 const MIN_SIZE = 42;
 const SIZE_EPSILON = 0.01;
 const FOCUS_COLOR = 'rgb(56, 69, 207)';
