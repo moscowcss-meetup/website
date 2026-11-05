@@ -15,7 +15,7 @@ export const inner = style([
   {
     display: vars.display.flex,
     flexDirection: vars.flexDirection.column,
-    gap: vars.layout.gap.l,
+    gap: vars.layout.gap.xxl,
   },
 ]);
 

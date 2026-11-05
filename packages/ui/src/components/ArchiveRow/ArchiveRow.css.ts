@@ -4,8 +4,12 @@ import { vars, media } from '@moscowcss/design-system';
 // Зона нажатия до hitTarget за счёт полей с компенсирующим отрицательным отступом: вёрстка не едет.
 const hitInset = `max(calc(${vars.size.hitTarget} * 0), calc((${vars.size.hitTarget} - 1lh) / 2))`;
 
+// Вся строка — ссылка, как карточка спикера: псевдоэлемент ссылки растянут на строку, заголовок
+// остаётся единственным доступным именем ссылки.
 export const root = style({
   boxSizing: 'border-box',
+  position: vars.position.relative,
+  blockSize: '100%',
   display: vars.display.grid,
   gridTemplateColumns: '1fr',
   gridTemplateAreas: '"title" "meta" "badges"',
@@ -13,6 +17,10 @@ export const root = style({
   rowGap: vars.spacing.s,
   padding: vars.padding.xxl,
   color: vars.color.text,
+  transition: `background-color ${vars.motion.duration.fast} ${vars.motion.easing.standard}`,
+  selectors: {
+    '&:hover': { background: vars.color.dividerSoft },
+  },
   '@media': {
     [media.tablet]: {
       gridTemplateColumns: '1fr auto',
@@ -38,6 +46,10 @@ export const link = style({
   color: vars.color.text,
   textDecorationThickness: vars.border.width.thin,
   textUnderlineOffset: '0.15em',
+  selectors: {
+    '&::after': { content: '""', position: vars.position.absolute, inset: vars.inset.zero },
+    [`${root}:hover &`]: { textDecorationThickness: vars.border.width.medium },
+  },
 });
 
 export const meta = style({

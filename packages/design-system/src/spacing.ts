@@ -40,6 +40,7 @@ const contract = {
     archiveCardMin: null,
     archiveFieldMin: null,
     archivePhoto: null,
+    archiveControl: null,
   },
 } as const;
 
@@ -77,6 +78,7 @@ const values = {
     archiveCardMin: '17rem', // 272px — уже карточка спикера не становится
     archiveFieldMin: '16rem', // 256px — поле фильтра
     archivePhoto: '8rem', // 128px — фото в карточке спикера
+    archiveControl: '2.75rem', // 44px — общая высота полей и кнопки фильтра, не меньше hitTarget
   },
 };
 

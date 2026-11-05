@@ -7,7 +7,7 @@ export const root = style({
   display: vars.display.flex,
   flexWrap: 'wrap',
   alignItems: 'flex-end',
-  gap: vars.spacing.l,
+  gap: vars.spacing.xl,
   minWidth: 0,
   color: vars.color.text,
   selectors: {
@@ -18,7 +18,7 @@ export const root = style({
 export const field = style({
   display: vars.display.flex,
   flexDirection: vars.flexDirection.column,
-  gap: vars.spacing.xs,
+  gap: vars.spacing.s,
   flex: `1 1 ${vars.size.archiveFieldMin}`,
   minWidth: 0,
   selectors: {
@@ -30,11 +30,12 @@ export const label = style({
   font: vars.font.shorthand.caption,
 });
 
+// Поле, выбор года, флажок и кнопка одной высоты: иначе подписи над ними встают на разную линию.
 export const input = style({
   boxSizing: 'border-box',
   inlineSize: '100%',
-  minHeight: vars.size.hitTarget,
-  paddingBlock: vars.padding.s,
+  blockSize: vars.size.archiveControl,
+  paddingBlock: 0,
   paddingInline: vars.padding.l,
   border: line,
   borderRadius: 0,
@@ -51,7 +52,7 @@ export const check = style({
   display: vars.display.inlineFlex,
   alignItems: vars.alignItems.center,
   gap: vars.spacing.s,
-  minHeight: vars.size.hitTarget,
+  blockSize: vars.size.archiveControl,
   font: vars.font.shorthand.body,
   cursor: 'pointer',
 });
@@ -67,8 +68,8 @@ export const checkbox = style({
 export const reset = style({
   boxSizing: 'border-box',
   minWidth: vars.size.hitTarget,
-  minHeight: vars.size.hitTarget,
-  paddingBlock: vars.padding.s,
+  blockSize: vars.size.archiveControl,
+  paddingBlock: 0,
   paddingInline: vars.padding.l,
   border: line,
   borderRadius: 0,

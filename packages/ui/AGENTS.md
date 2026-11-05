@@ -63,7 +63,7 @@ demoed in `apps/storybook`.
   full-screen menu; a link with `current` gets `aria-current`). The list pages (spec 007) use
   `CardGrid` (a `ul` whose `li` cells share one border line, like the designer's table; one
   column, or as many as fit from `tablet`), `SpeakerCard` (whole-card link: octagon photo, name,
-  up to three meetup labels), `ArchiveRow` (title link, caption line, labels), `ArchiveFilter`
+  up to three meetup labels), `ArchiveRow` (the whole row is the title link, stretched by its `::after`; caption line, labels), `ArchiveFilter`
   (form `hidden` until the page script shows it) and `SectionTabs` (links between the lists).
 - **Styles live only in the colocated `.css.ts`** — no inline `style="…"` with
   literal values.
