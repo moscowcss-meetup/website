@@ -32,7 +32,7 @@ const catalog = {
   talks: [
     talk('ru/grid', { event: '10', time: '19:00', title: 'Гриды', speakers: ['elkin'] }),
     talk('ru/subgrid', { event: '15', time: '19:40', title: 'Сабгрид', speakers: ['boris'], videoUrl: 'https://youtu.be/b' }),
-    talk('ru/has', { event: '15', time: '19:00', title: ':has()', speakers: ['anna', 'elkin-draft'] }),
+    talk('ru/has', { event: '15', time: '19:00', title: ':has()', speakers: ['anna', 'elkin-draft'], vkVideoUrl: 'https://vkvideo.ru/video-1_2' }),
     talk('ru/anchor', { event: '31', time: '19:00', title: 'Якоря', speakers: ['elkin'], slidesUrl: 'https://s/x' }),
     talk('ru/hidden', { event: '31', time: '20:00', title: 'Черновик', speakers: ['vera'], draft: true }),
     talk('ru/online', { event: 'online-2021', title: 'Онлайн-доклад', speakers: ['anna'] }),
@@ -82,6 +82,7 @@ describe('строки', () => {
     expect(archive.events[0]).toMatchObject({ date: '2026-07-09', year: 2026, talks: 1, recording: false, photos: true });
     expect(archive.events.find((item) => item.slug === '15')).toMatchObject({ venue: 'Звук', talks: 2, recording: true });
     expect(archive.events.find((item) => item.slug === '10')?.recording).toBe(true);
+    expect(archive.talks.find((item) => item.slug === 'has')?.video).toBe(true);
   });
 
   it('доклад: митап с меткой, спикеры по именам, видео и слайды', () => {
@@ -124,7 +125,7 @@ describe('фильтр', () => {
   });
 
   it('год и запись вместе с текстом; год без митапов — пусто', () => {
-    expect(titles(filterArchive('talks', archive.talks, { query: '', year: 2024, media: true }))).toEqual(['Сабгрид']);
+    expect(titles(filterArchive('talks', archive.talks, { query: '', year: 2024, media: true }))).toEqual([':has()', 'Сабгрид']);
     expect(titles(filterArchive('events', archive.events, { query: '', year: undefined, media: true }))).toEqual(['Пятнадцатый', 'Десятый']);
     expect(filterArchive('events', archive.events, { ...EMPTY_FILTER, year: 2019 })).toEqual([]);
     expect(filterArchive('speakers', archive.speakers, { ...EMPTY_FILTER, year: 2023 }).map((s) => s.slug)).toEqual(['elkin']);

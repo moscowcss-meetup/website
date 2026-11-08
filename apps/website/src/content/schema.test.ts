@@ -65,6 +65,23 @@ describe('TalkSchema', () => {
   it('время 99:99 отклоняется', () => {
     expect(TalkSchema.safeParse(talk({ time: '99:99' })).success).toBe(false);
   });
+
+  it('ролик в VK Видео: vk.com, vk.ru и vkvideo.ru, в том числе с www и m', () => {
+    for (const vkVideoUrl of [
+      'https://vkvideo.ru/video-167479002_456239487',
+      'https://vk.com/video-225485687_456239017',
+      'https://m.vk.ru/video-1_2',
+      'https://www.vk.com/video-1_2',
+    ]) {
+      expect(TalkSchema.safeParse(talk({ vkVideoUrl })).success, vkVideoUrl).toBe(true);
+    }
+  });
+
+  it('в поле VK Видео не проходит YouTube и не-https', () => {
+    expect(TalkSchema.safeParse(talk({ vkVideoUrl: 'https://www.youtube.com/watch?v=x' })).success).toBe(false);
+    expect(TalkSchema.safeParse(talk({ vkVideoUrl: 'http://vk.com/video-1_2' })).success).toBe(false);
+    expect(TalkSchema.safeParse(talk({ vkVideoUrl: 'https://notvk.com/video-1_2' })).success).toBe(false);
+  });
 });
 
 describe('PageSchema', () => {

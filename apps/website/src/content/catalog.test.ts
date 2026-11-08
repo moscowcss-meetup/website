@@ -117,6 +117,12 @@ describe('validateCatalog', () => {
     expect(message).toContain('поле time отличается от ru/css-nesting');
   });
 
+  it('ролик в VK Видео есть только в ru — расхождение перевода', () => {
+    const catalog = twoMeetupsCatalog();
+    catalog.talks[0] = talk('ru/css-nesting', { event: '10', vkVideoUrl: 'https://vkvideo.ru/video-1_2' });
+    expect(messageOf(() => validateCatalog(catalog))).toContain('поле vkVideoUrl отличается от ru/css-nesting');
+  });
+
   it('расхождение даты митапа и времени в schedule', () => {
     const catalog = twoMeetupsCatalog();
     const schedule = [{ time: '19:40—20:00', title: 'Перерыв', kind: 'break' as const }];

@@ -124,6 +124,7 @@ export function markdownOf(page: PublicPage, catalog: MarkdownCatalog, context: 
         ? talkLinksOf(talk, event, {
             slides: t('talk.slides'),
             video: t('talk.video'),
+            vkVideo: t('talk.vkVideo'),
             recording: t('event.recording'),
           }).map((item) => `- ${link(item.label, item.href)}`)
         : [];

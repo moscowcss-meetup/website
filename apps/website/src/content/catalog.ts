@@ -80,7 +80,7 @@ const INVARIANTS = {
     'schedule[].kind',
     'gallery[].image',
   ],
-  talks: ['event', 'speakers', 'time', 'slidesUrl', 'videoUrl', 'cover'],
+  talks: ['event', 'speakers', 'time', 'slidesUrl', 'videoUrl', 'vkVideoUrl', 'cover'],
   speakers: ['photo', 'links', 'founder'],
   partners: ['url', 'handle', 'logo', 'qrUrl', 'look'],
   organizers: ['status', 'photo', 'contacts'],

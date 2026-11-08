@@ -41,6 +41,13 @@ const url = z
     "ссылка должна начинаться с https://",
   );
 
+// Ролик в VK Видео: проверяем хост, чтобы сюда по ошибке не попала ссылка на YouTube.
+const VK_VIDEO_HOSTS = new Set(["vk.com", "vk.ru", "vkvideo.ru"]);
+const vkVideoUrl = url.refine(
+  (value) => VK_VIDEO_HOSTS.has(new URL(value).hostname.replace(/^(www|m)\./, "")),
+  "нужна ссылка на VK Видео: vk.com, vk.ru или vkvideo.ru",
+);
+
 // Митапы проходят в Москве: время пишется местным, пояс фиксирован (+03:00, в России нет
 // перехода на летнее время с 2014 года). Дата и время — разные поля: YAML читает время без пояса
 // как UTC молча, и после разбора уже не понять, был пояс указан или нет.
@@ -142,6 +149,7 @@ export const createTalkSchema = (image: ImageFunction) =>
     title: z.string().min(1),
     slidesUrl: url.optional(),
     videoUrl: url.optional(),
+    vkVideoUrl: vkVideoUrl.optional(),
     // Карточка анонса доклада; без неё страница показывает общую заглушку TBD.
     cover: image().optional(),
     draft: z.boolean().default(false),

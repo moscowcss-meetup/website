@@ -169,7 +169,7 @@ export function archiveOf(
         talks: own.length,
         speakers: unique(own.flatMap((talk) => talk.data.speakers)),
         tags: event.data.tags,
-        recording: event.data.recordingUrl !== undefined || own.some((talk) => talk.data.videoUrl !== undefined),
+        recording: event.data.recordingUrl !== undefined || own.some((talk) => talk.data.videoUrl !== undefined || talk.data.vkVideoUrl !== undefined),
         photos: event.data.photosUrl !== undefined,
       };
     }),
@@ -183,7 +183,7 @@ export function archiveOf(
         const name = nameOf.get(slug);
         return name === undefined ? [] : [{ slug, name }];
       }),
-      video: talk.data.videoUrl !== undefined,
+      video: talk.data.videoUrl !== undefined || talk.data.vkVideoUrl !== undefined,
       slides: talk.data.slidesUrl !== undefined,
     })),
     speakers: speakersByLatestTalk(speakers, talks, events).map((speaker) => {
