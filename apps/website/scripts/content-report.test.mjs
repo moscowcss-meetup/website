@@ -54,8 +54,8 @@ describe('отчёт по папке контента', () => {
 
   beforeEach(() => {
     dir = mkdtempSync(join(tmpdir(), 'content-report-'));
-    put('src/events/ru/18.md', `---\ndate: 2022-09-22\nrecordingUrl: "${REC}"\nphotosUrl: "https://vk.com/album-1_2"\ngallery:\n  - image: ../assets/18-1.jpg\n    alt: "Сцена"\n---\n`);
-    put('src/events/ru/19.md', '---\ndate: "2022-12-20"\nphotosUrl: "https://disk.yandex.ru/d/x"\n---\n');
+    put('src/events/ru/18.md', `---\ndate: 2022-09-22\nrecordingUrl: "${REC}"\nvkPhotosUrl: "https://vk.com/album-1_2"\ngallery:\n  - image: ../assets/18-1.jpg\n    alt: "Сцена"\n---\n`);
+    put('src/events/ru/19.md', '---\ndate: "2022-12-20"\ndiskPhotosUrl: "https://disk.yandex.ru/d/x"\n---\n');
     put('src/events/ru/40.md', '---\ndate: 2030-01-01\n---\n');
     put('src/events/ru/41.md', '---\ndate: 2020-01-01\ndraft: true\n---\n');
     put('src/speakers/ru/anna.md', '---\nname: "Анна | Блок"\n---\n');
@@ -84,7 +84,7 @@ describe('отчёт по папке контента', () => {
     expect(meetups).toContain('pnpm report:content` 2026-11-08');
     expect(meetups).toContain('✅ [альбом](https://vk.com/album-1_2) | ❌ |');
     expect(meetups).toContain('[#36](https://github.com/moscowcss-meetup/website/issues/36)');
-    expect(meetups).toContain('Альбом ВК: 1, Яндекс Диск: 1, без альбома: 0.');
+    expect(meetups).toContain('Альбом ВК: 1, Яндекс Диск: 1, оба: 0, без альбома: 0.');
     expect(talks).toContain('Анна \\| Блок');
     expect(talks).toContain('🟡 таймкод в записи митапа');
     expect(talks).toContain('✅ [VK](https://vkvideo.ru/video-1_2)');

@@ -12,7 +12,7 @@ modes:
 passportRequired: false
 draft: true
 # Черновик. Дата в поле date (ГГГГ-ММ-ДД), начало по Москве в time. Необязательные поля
-# (registrationUrl, streamUrl, recordingUrl, photosUrl, partner, schedule, venue.mapUrl) добавьте по
+# (registrationUrl, streamUrl, recordingUrl, vkPhotosUrl, diskPhotosUrl, partner, schedule, venue.mapUrl) добавьте по
 # README. Перед публикацией замените все значения и уберите draft: true. Ссылки только https.
 ---
 

@@ -52,13 +52,16 @@ describe('validateCatalog', () => {
     expect(messageOf(() => validateCatalog(catalog))).toContain('партнёр «zvuk» — черновик');
   });
 
-  it('расхождение photosUrl в переводе митапа', () => {
+  it('расхождение альбомов в переводе митапа: каждое поле отдельно', () => {
     const catalog = twoMeetupsCatalog();
     catalog.events[0] = event('ru/10', {
       date: new Date('2024-03-14T18:00:00+03:00'),
-      photosUrl: 'https://example.com/photos',
+      vkPhotosUrl: 'https://vk.com/album-1_2',
+      diskPhotosUrl: 'https://disk.yandex.ru/d/x',
     });
-    expect(messageOf(() => validateCatalog(catalog))).toContain('events/en/10.md: поле photosUrl');
+    const message = messageOf(() => validateCatalog(catalog));
+    expect(message).toContain('events/en/10.md: поле vkPhotosUrl');
+    expect(message).toContain('events/en/10.md: поле diskPhotosUrl');
   });
 
   it('расхождение passportRequired в переводе митапа', () => {

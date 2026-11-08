@@ -61,6 +61,20 @@ describe('EventSchema', () => {
 
 const TalkSchema = createTalkSchema(() => z.string());
 
+describe('EventSchema: фотоальбомы', () => {
+  it('альбом ВК и папка на Диске вместе', () => {
+    const parsed = EventSchema.parse(event({ vkPhotosUrl: 'https://vk.ru/album-139668978_1', diskPhotosUrl: 'https://disk.360.yandex.ru/d/x' }));
+    expect([parsed.vkPhotosUrl, parsed.diskPhotosUrl]).toEqual(['https://vk.ru/album-139668978_1', 'https://disk.360.yandex.ru/d/x']);
+    expect(EventSchema.safeParse(event({ diskPhotosUrl: 'https://yadi.sk/d/x' })).success).toBe(true);
+  });
+
+  it('ссылка не в своё поле не проходит', () => {
+    expect(EventSchema.safeParse(event({ vkPhotosUrl: 'https://disk.yandex.ru/d/x' })).success).toBe(false);
+    expect(EventSchema.safeParse(event({ diskPhotosUrl: 'https://vk.com/album-1_2' })).success).toBe(false);
+    expect(EventSchema.safeParse(event({ vkPhotosUrl: 'https://vkvideo.ru/video-1_2' })).success).toBe(false);
+  });
+});
+
 describe('TalkSchema', () => {
   it('время 99:99 отклоняется', () => {
     expect(TalkSchema.safeParse(talk({ time: '99:99' })).success).toBe(false);

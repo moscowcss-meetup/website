@@ -24,7 +24,7 @@ const catalog = {
   events: [
     event('ru/10', { date: new Date('2023-03-14T18:00:00+03:00'), tagline: 'Десятый', venue: { name: 'Авито' }, recordingUrl: 'https://youtu.be/a' }),
     event('ru/15', { date: new Date('2024-02-20T18:00:00+03:00'), tagline: 'Пятнадцатый', venue: { name: 'Звук' } }),
-    event('ru/31', { date: new Date('2026-07-09T18:00:00+03:00'), tagline: 'Тридцать первый', photosUrl: 'https://disk/x' }),
+    event('ru/31', { date: new Date('2026-07-09T18:00:00+03:00'), tagline: 'Тридцать первый', diskPhotosUrl: 'https://disk.yandex.ru/d/x' }),
     event('ru/online-2021', { date: new Date('2021-12-21T19:00:00+03:00'), tagline: 'Онлайн' }),
     event('ru/32', { date: new Date('2026-09-01T18:00:00+03:00'), draft: true }),
     event('en/10', { date: new Date('2023-03-14T18:00:00+03:00') }),

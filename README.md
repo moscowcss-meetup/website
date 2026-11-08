@@ -53,7 +53,8 @@
 | Ролик доклада | `packages/content/src/talks/ru/<доклад>.md` и `…/en/<доклад>.md` | `videoUrl` |
 | Слайды доклада | там же | `slidesUrl` |
 | Полная запись митапа | `packages/content/src/events/ru/<номер>.md` и `…/en/<номер>.md` | `recordingUrl` |
-| Фотоальбом митапа (ВК или Яндекс Диск) | там же | `photosUrl` |
+| Фотоальбом митапа ВКонтакте | там же | `vkPhotosUrl` |
+| Папка с фото на Яндекс Диске | там же | `diskPhotosUrl` |
 
 ```yaml
 videoUrl: "https://www.youtube.com/watch?v=…"

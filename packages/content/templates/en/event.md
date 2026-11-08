@@ -12,7 +12,7 @@ modes:
 passportRequired: false
 draft: true
 # Draft. date, time, passportRequired and links must match the Russian file. Add the optional
-# fields (registrationUrl, streamUrl, recordingUrl, photosUrl, partner, schedule, venue.mapUrl) per the
+# fields (registrationUrl, streamUrl, recordingUrl, vkPhotosUrl, diskPhotosUrl, partner, schedule, venue.mapUrl) per the
 # README. Replace every value and remove draft: true before publishing. Links are https only.
 ---
 

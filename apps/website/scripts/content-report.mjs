@@ -49,7 +49,8 @@ export function loadArchive(dir, today) {
       slug,
       date: dayOf(data.date),
       gallery: (data.gallery ?? []).length,
-      photosUrl: data.photosUrl,
+      vkPhotosUrl: data.vkPhotosUrl,
+      diskPhotosUrl: data.diskPhotosUrl,
       recordingUrl: data.recordingUrl,
     }))
     .filter((event) => event.date <= today)
@@ -112,16 +113,12 @@ const eventName = (slug) => `MoscowCSS ${slug}`;
 const page = (path) => `${SITE}/${path}/`;
 const cell = (text) => String(text).replace(/\|/g, '\\|');
 const issueLink = (issues, slug) => (issues[slug] ? `[#${issues[slug]}](${ISSUES}/${issues[slug]})` : '—');
-const isVk = (url) => /(^|\.)vk\.(com|ru)$/.test(new URL(url).hostname);
-const isDisk = (url) => /(^|\.)yandex\.ru$|(^|\.)yadi\.sk$/.test(new URL(url).hostname);
 const generated = (today) =>
   `> Собрано командой \`pnpm report:content\` ${today}. Руками не правьте: поправьте контент и пересоберите.`;
 
 export function renderMeetups({ events, issues, today }) {
   const count = (test) => events.filter(test).length;
   const rows = events.map((event) => {
-    const vk = event.photosUrl && isVk(event.photosUrl);
-    const disk = event.photosUrl && isDisk(event.photosUrl);
     const recording = !event.recordingUrl
       ? '❌'
       : youtubeId(event.recordingUrl)
@@ -131,8 +128,8 @@ export function renderMeetups({ events, issues, today }) {
       `[${eventName(event.slug)}](${page(`events/${event.slug}`)})`,
       event.date,
       event.gallery ? `✅ ${event.gallery}` : '❌',
-      vk ? `✅ [альбом](${event.photosUrl})` : '❌',
-      disk ? `✅ [папка](${event.photosUrl})` : '❌',
+      event.vkPhotosUrl ? `✅ [альбом](${event.vkPhotosUrl})` : '❌',
+      event.diskPhotosUrl ? `✅ [папка](${event.diskPhotosUrl})` : '❌',
       recording,
       issueLink(issues, event.slug),
     ].join(' | ');
@@ -152,7 +149,7 @@ ${rows.map((row) => `| ${row} |`).join('\n')}
 Прошедших митапов: ${events.length}.
 
 - Фото на странице: ${count((event) => event.gallery > 0)}.
-- Альбом ВК: ${count((event) => event.photosUrl && isVk(event.photosUrl))}, Яндекс Диск: ${count((event) => event.photosUrl && isDisk(event.photosUrl))}, без альбома: ${count((event) => !event.photosUrl)}.
+- Альбом ВК: ${count((event) => event.vkPhotosUrl)}, Яндекс Диск: ${count((event) => event.diskPhotosUrl)}, оба: ${count((event) => event.vkPhotosUrl && event.diskPhotosUrl)}, без альбома: ${count((event) => !event.vkPhotosUrl && !event.diskPhotosUrl)}.
 - Полная запись: ${count((event) => event.recordingUrl)}, без записи: ${count((event) => !event.recordingUrl)}.
 `;
 }

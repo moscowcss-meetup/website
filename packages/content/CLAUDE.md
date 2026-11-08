@@ -72,8 +72,8 @@ Decision record: `adr/001-content-model-md-relations.md`.
 - Collections: `pages`, `events`, `talks`, `speakers`, `partners`, `faq`,
   `organizers`, `reviews`, `documents`.
 - **Archive gaps:** talk `time` and speaker `role` are optional because old meetups
-  did not keep them — never fill them in from guesswork. Meetup `photosUrl` links
-  an external photo album; the registration link is hidden on past meetups.
+  did not keep them — never fill them in from guesswork. Meetup `vkPhotosUrl` (vk.com/vk.ru) and
+  `diskPhotosUrl` (Yandex Disk) link external photo albums, one or both, each checked by host; the registration link is hidden on past meetups.
 - **`documents`** are standalone pages without a section prefix
   (`documents/ru/privacy.md` → `/privacy/`; also `about`, which ends with the Contacts section, and
   `speaker-guide`). Optional `topics` (`summary` + plain-text `items`) renders as a closed `Disclosure` after the body;

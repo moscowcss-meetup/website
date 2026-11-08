@@ -170,7 +170,7 @@ export function archiveOf(
         speakers: unique(own.flatMap((talk) => talk.data.speakers)),
         tags: event.data.tags,
         recording: event.data.recordingUrl !== undefined || own.some((talk) => talk.data.videoUrl !== undefined || talk.data.vkVideoUrl !== undefined),
-        photos: event.data.photosUrl !== undefined,
+        photos: event.data.vkPhotosUrl !== undefined || event.data.diskPhotosUrl !== undefined,
       };
     }),
     talks: talksNewestFirst(talks, events).map(({ talk, event }) => ({

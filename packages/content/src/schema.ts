@@ -41,11 +41,17 @@ const url = z
     "ссылка должна начинаться с https://",
   );
 
-// Ролик в VK Видео: проверяем хост, чтобы сюда по ошибке не попала ссылка на YouTube.
-const VK_VIDEO_HOSTS = new Set(["vk.com", "vk.ru", "vkvideo.ru"]);
-const vkVideoUrl = url.refine(
-  (value) => VK_VIDEO_HOSTS.has(new URL(value).hostname.replace(/^(www|m)\./, "")),
-  "нужна ссылка на VK Видео: vk.com, vk.ru или vkvideo.ru",
+// Хост без www. и m.: мобильная и полная версии одного сайта — одна площадка.
+const hostOf = (value: string) => new URL(value).hostname.replace(/^(www|m)\./, "");
+// Поле под конкретную площадку проверяет хост, чтобы ссылка не легла в соседнее поле по ошибке.
+const urlOn = (hosts: readonly string[], message: string) =>
+  url.refine((value) => hosts.includes(hostOf(value)), message);
+
+const vkVideoUrl = urlOn(["vk.com", "vk.ru", "vkvideo.ru"], "нужна ссылка на VK Видео: vk.com, vk.ru или vkvideo.ru");
+const vkPhotosUrl = urlOn(["vk.com", "vk.ru"], "нужна ссылка на альбом ВКонтакте: vk.com или vk.ru");
+const diskPhotosUrl = urlOn(
+  ["disk.yandex.ru", "disk.yandex.com", "disk.360.yandex.ru", "yadi.sk"],
+  "нужна ссылка на Яндекс Диск: disk.yandex.ru, disk.360.yandex.ru или yadi.sk",
 );
 
 // Митапы проходят в Москве: время пишется местным, пояс фиксирован (+03:00, в России нет
@@ -106,8 +112,9 @@ const EventFields = z.object({
   registrationUrl: url.optional(),
   streamUrl: url.optional(),
   recordingUrl: url.optional(),
-  // Альбом с фотографиями митапа (VK, Яндекс Диск): сами фотографии на сайт не копируются.
-  photosUrl: url.optional(),
+  // Фотоальбомы митапа: сами фотографии на сайт не копируются. Можно один, можно оба.
+  vkPhotosUrl: vkPhotosUrl.optional(),
+  diskPhotosUrl: diskPhotosUrl.optional(),
   partner: slug.optional(),
   // Снимки со встречи для галереи на странице митапа: файлы одинаковы в языках, описание переводится.
   gallery: z.array(z.object({ image: z.string().min(1), alt: z.string().min(1) })).default([]),

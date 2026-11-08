@@ -22,7 +22,8 @@ function catalog() {
         date: new Date('2026-03-01T19:00:00+03:00'),
         tagline: 'Шестнадцатый [весенний] митап',
         registrationUrl: 'https://timepad.ru/e/16',
-        photosUrl: 'https://disk.yandex.ru/d/16',
+        vkPhotosUrl: 'https://vk.com/album-1_16',
+        diskPhotosUrl: 'https://disk.yandex.ru/d/16',
       }),
     ],
     talks: [...base.talks, talk('ru/spring-talk', { event: '16', time: '19:30', title: 'Весенний доклад' })],
@@ -60,7 +61,7 @@ describe('markdownOf', () => {
       '- 19:30 — [Весенний доклад](https://css.moscow/talks/spring-talk/), [Дарья Егорова](https://css.moscow/speakers/daria-egorova/)',
     );
     expect(text).toContain('- [Регистрация](https://timepad.ru/e/16)');
-    expect(text).toContain('- [Фотографии](https://disk.yandex.ru/d/16)');
+    expect(text).toContain('- [Фото в ВК](https://vk.com/album-1_16)\n- [Фото на Яндекс Диске](https://disk.yandex.ru/d/16)');
   });
 
   it('прошедший митап: ссылки на регистрацию нет, как и на странице', () => {

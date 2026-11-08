@@ -102,7 +102,8 @@ export function markdownOf(page: PublicPage, catalog: MarkdownCatalog, context: 
         registration: t('event.registration'),
         stream: t('event.stream'),
         recording: t('event.recording'),
-        photos: t('event.photos'),
+        vkPhotos: t('event.vkPhotos'),
+        diskPhotos: t('event.diskPhotos'),
         map: t('event.map'),
       }).map((item) => `- ${link(item.label, item.href)}`);
       return document([
