@@ -40,10 +40,10 @@ contacts:
       links:
         - label: "Speaker guide"
           url: "https://css.moscow/en/speaker-guide/"
-        - label: "@RinaPa"
-          url: "https://t.me/RinaPa"
         - label: "@DreamShaded"
           url: "https://t.me/DreamShaded"
+        - label: "@RinaPa"
+          url: "https://t.me/RinaPa"
         - label: "@Ppppst"
           url: "https://t.me/Ppppst"
     - title: "Help the meetup"

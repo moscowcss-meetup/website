@@ -40,10 +40,10 @@ contacts:
       links:
         - label: "Памятка спикеру"
           url: "https://css.moscow/speaker-guide/"
-        - label: "@RinaPa"
-          url: "https://t.me/RinaPa"
         - label: "@DreamShaded"
           url: "https://t.me/DreamShaded"
+        - label: "@RinaPa"
+          url: "https://t.me/RinaPa"
         - label: "@Ppppst"
           url: "https://t.me/Ppppst"
     - title: "Помочь митапу"

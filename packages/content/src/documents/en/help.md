@@ -56,10 +56,10 @@ help:
     title: "Let's make a meetup together"
     text: "Tell us how you would like to help: with a talk, a venue or a joint meetup. We answer in Telegram."
     links:
-      - label: "@RinaPa"
-        url: "https://t.me/RinaPa"
       - label: "@DreamShaded"
         url: "https://t.me/DreamShaded"
+      - label: "@RinaPa"
+        url: "https://t.me/RinaPa"
       - label: "@Ppppst"
         url: "https://t.me/Ppppst"
       - label: "Community chat"

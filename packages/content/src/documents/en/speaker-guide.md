@@ -59,4 +59,4 @@ For contact, Telegram or a phone number: we will arrange a rehearsal and find yo
 
 ## How to apply
 
-Fill in the [application form](https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e/) or write to the organisers in Telegram: [@RinaPa](https://t.me/RinaPa), [@DreamShaded](https://t.me/DreamShaded), [@Ppppst](https://t.me/Ppppst). Speakers' data is processed under the [personal data policy](https://css.moscow/en/privacy/).
+Fill in the [application form](https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e/) or write to the organisers in Telegram: [@DreamShaded](https://t.me/DreamShaded), [@RinaPa](https://t.me/RinaPa), [@Ppppst](https://t.me/Ppppst). Speakers' data is processed under the [personal data policy](https://css.moscow/en/privacy/).

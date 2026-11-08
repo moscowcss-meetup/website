@@ -56,10 +56,10 @@ help:
     title: "Давайте сделаем митап вместе"
     text: "Расскажите, чем хотите помочь: докладом, площадкой или совместной встречей. Ответим в Telegram."
     links:
-      - label: "@RinaPa"
-        url: "https://t.me/RinaPa"
       - label: "@DreamShaded"
         url: "https://t.me/DreamShaded"
+      - label: "@RinaPa"
+        url: "https://t.me/RinaPa"
       - label: "@Ppppst"
         url: "https://t.me/Ppppst"
       - label: "Чат сообщества"

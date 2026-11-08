@@ -59,4 +59,4 @@ topics:
 
 ## Как подать заявку
 
-Заполните [форму заявки](https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e/) или напишите организаторам в Telegram: [@RinaPa](https://t.me/RinaPa), [@DreamShaded](https://t.me/DreamShaded), [@Ppppst](https://t.me/Ppppst). Данные спикеров обрабатываются по [политике обработки персональных данных](https://css.moscow/privacy/).
+Заполните [форму заявки](https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e/) или напишите организаторам в Telegram: [@DreamShaded](https://t.me/DreamShaded), [@RinaPa](https://t.me/RinaPa), [@Ppppst](https://t.me/Ppppst). Данные спикеров обрабатываются по [политике обработки персональных данных](https://css.moscow/privacy/).
