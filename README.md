@@ -27,7 +27,8 @@
   [слайдам](https://github.com/moscowcss-meetup/website/labels/%D0%BF%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8).
 - [Разработка](https://github.com/moscowcss-meetup/website/labels/%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0): доработки
   самого сайта.
-- Сводные таблицы на дату выгрузки: [митапы](docs/todo/meetups.md) и [доклады](docs/todo/talks.md).
+- Сводные таблицы: [митапы](docs/todo/meetups.md) и [доклады](docs/todo/talks.md). Их пересобирает
+  `pnpm report:content`, где искать записи — в [sources.md](docs/todo/sources.md).
 
 ### Как взять задачу
 
@@ -145,6 +146,7 @@ pnpm dev:site        # сайт на http://localhost:4321
 | `pnpm test` | тесты всех пакетов |
 | `pnpm lint` | ESLint с автоисправлением |
 | `pnpm new:talk <имя>` | заготовка доклада в `ru` и `en`; есть `new:event`, `new:speaker` и другие |
+| `pnpm report:content` | пересобирает таблицы `docs/todo` из контента |
 
 Перед pull request должны проходить `pnpm lint`, `pnpm test` и `pnpm build`; то же самое запускает CI.
 Сообщения коммитов — по [Conventional Commits](https://www.conventionalcommits.org/ru/) на английском:

@@ -170,6 +170,7 @@ Node & pnpm:
 | `pnpm new:faq <name>`     | Draft FAQ entry files, `ru` and `en`.                           |
 | `pnpm new:organizer <name>` | Draft organizer files, `ru` and `en`; the editor fills `status` and `contacts`. |
 | `pnpm new:review <name>` | Draft community review files, `ru` and `en`; photo and gallery are optional. |
+| `pnpm report:content` | Rebuilds `docs/todo/meetups.md` and `docs/todo/talks.md` from the content: photos, albums, recordings, YouTube/VK video and slides. Issue numbers come from `docs/todo/issues.json`, hand-written notes live in `docs/todo/sources.md`. |
 | `pnpm --filter @moscowcss/ui test` | The UI package's own vitest suite (pure logic, e.g. the `TagPile` layout in `pile.ts`). |
 | `node tools/visual/check-targets.mjs [url]` | Hit-area gate over the built site at 375 and 1440 (needs `astro preview` and `CHROMIUM_PATH`). |
 

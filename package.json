@@ -22,6 +22,7 @@
     "new:faq": "node apps/website/scripts/new-entry.mjs faq",
     "new:organizer": "node apps/website/scripts/new-entry.mjs organizer",
     "new:review": "node apps/website/scripts/new-entry.mjs review",
+    "report:content": "node apps/website/scripts/content-report.mjs",
     "prepare": "husky",
     "test": "turbo run test"
   },

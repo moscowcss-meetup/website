@@ -8,12 +8,20 @@
 - у каждого митапа фото на странице;
 - у каждого митапа ссылка на фотоальбом в ВК или на Яндекс Диске, лучше оба.
 
-Таблицы ниже — снимок на 2026-11-08, собранный из `packages/content/src`. Живой список дел — в задачах:
-общий план [#14](https://github.com/moscowcss-meetup/website/issues/14), по задаче на каждый митап с меткой
-[контент](https://github.com/moscowcss-meetup/website/labels/%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82).
-Обновлять таблицы скриптом — задача [#17](https://github.com/moscowcss-meetup/website/issues/17).
+Живой список дел — в задачах: общий план [#14](https://github.com/moscowcss-meetup/website/issues/14), по задаче на
+каждый митап с меткой [контент](https://github.com/moscowcss-meetup/website/labels/%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82).
 
-- [Митапы: фото и записи](meetups.md)
-- [Доклады: видео и слайды](talks.md)
+| Файл | Что | Кто пишет |
+| --- | --- | --- |
+| [meetups.md](meetups.md) | фото, альбомы и записи митапов | `pnpm report:content` |
+| [talks.md](talks.md) | YouTube, VK Видео и слайды докладов | `pnpm report:content` |
+| [sources.md](sources.md) | где искать записи, те же доклады на других мероприятиях | руками |
+| [issues.json](issues.json) | номер задачи GitHub для каждого митапа | руками, при новой задаче |
+
+Добавили ссылку в контент — пересоберите таблицы и закоммитьте их вместе с контентом:
+
+```bash
+pnpm report:content
+```
 
 Как помочь, по шагам: [README](../../README.md#как-помочь).

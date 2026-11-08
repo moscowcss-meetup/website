@@ -28,7 +28,7 @@ src/
 ├── rss/        # feed.ts: per-language meetup feed (/rss.xml, /en/rss.xml)
 ├── agents/     # markdown.ts (index.md of every page), discovery.ts (llms.txt, skill, ARD), webmcp.ts, archive-data.ts
 └── test/       # fixtures for tests
-scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* generator)
+scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* generator), content-report (docs/todo tables)
 ```
 
 ## Rules
