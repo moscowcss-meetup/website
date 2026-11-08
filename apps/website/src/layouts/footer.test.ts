@@ -22,10 +22,11 @@ describe('footerLinksOf', () => {
   it('правила своего языка и внешняя ссылка на Telegram', () => {
     const telegram = 'https://t.me/moscowcss';
     expect(footerLinksOf('en', useTranslations('en'), telegram)).toEqual([
+      { href: '/en/help/', label: 'How to help' },
       { href: '/en/speaker-guide/', label: 'Speaker guide', external: true },
       { href: '/en/privacy/', label: 'Policy and rules' },
       { href: telegram, label: 'Telegram', external: true },
     ]);
-    expect(footerLinksOf('ru', useTranslations('ru'), telegram)[1]).toEqual({ href: '/privacy/', label: 'Политика и правила' });
+    expect(footerLinksOf('ru', useTranslations('ru'), telegram)[2]).toEqual({ href: '/privacy/', label: 'Политика и правила' });
   });
 });

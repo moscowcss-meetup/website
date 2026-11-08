@@ -98,7 +98,7 @@ async function discoverPages() {
   const walls = ['/reviews/', '/en/reviews/'];
   const found = await Promise.all(walls.map(async (path) => (await fetch(origin + path)).ok));
   const reviews = walls.filter((_, index) => found[index]);
-  return ['/', '/en/', '/events/31/', talk, speaker, ...lists, ...reviews, '/search/', '/privacy/', '/about/', '/en/events/31/', '/404.html'].filter(Boolean);
+  return ['/', '/en/', '/events/31/', talk, speaker, ...lists, ...reviews, '/search/', '/privacy/', '/about/', '/help/', '/en/help/', '/en/events/31/', '/404.html'].filter(Boolean);
 }
 
 async function checkAxe(page, where) {

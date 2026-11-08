@@ -46,6 +46,13 @@ contacts:
           url: "https://t.me/DreamShaded"
         - label: "@Ppppst"
           url: "https://t.me/Ppppst"
+    - title: "Help the meetup"
+      text: "No donations: we are a non-profit community. People help with a talk, content for the site, a venue or a joint meetup. Reach numbers for devrels are there too."
+      links:
+        - label: "How to help"
+          url: "https://css.moscow/en/help/"
+        - label: "Issues on GitHub"
+          url: "https://github.com/moscowcss-meetup/website/issues"
 ---
 
 Moscow CSS is a community of interface developers and designers who love CSS, browser technology and design. The community has been around since 2015. Since 2 March 2017 we have held more than thirty meetups: talks on native CSS features, design systems, animation, accessibility, typography and frontend tooling, and on how a developer grows and finds common ground with designers.

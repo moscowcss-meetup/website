@@ -6,6 +6,7 @@ import H1 from '@moscowcss/ui/components/H1';
 import Prose from '@moscowcss/ui/components/Prose';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AboutPage from '../../components/AboutPage.astro';
+import HelpPage from '../../components/HelpPage.astro';
 import EntityPage from '../../components/EntityPage.astro';
 import { body, header } from '../../components/EntityPage.css';
 import { loadCatalog } from '../../content/catalog';
@@ -24,12 +25,12 @@ const { page } = Astro.props as { page: Extract<PublicPage, { kind: 'document' }
 const { locale, entry, alternates } = page;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { Content } = await render(entry as any);
-const { title, description, topics, contacts } = entry.data;
+const { title, description, topics, contacts, help } = entry.data;
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title={contacts ? `${title} — ${t('site.name')}` : title} description={description} lang={locale} alternates={alternates}>
-  {contacts ? <AboutPage entry={entry} locale={locale} /> : (
+<BaseLayout title={contacts || help ? `${title} — ${t('site.name')}` : title} description={description} lang={locale} alternates={alternates}>
+  {help ? <HelpPage entry={entry} locale={locale} /> : contacts ? <AboutPage entry={entry} locale={locale} /> : (
   <EntityPage>
     <div class={header}>
       <H1>{title}</H1>

@@ -13,6 +13,7 @@ export function copyrightOf(t: (key: UiKey) => string, now: Date): string {
 export function footerLinksOf(locale: Locale, t: (key: UiKey) => string, telegramUrl: string, { reviews = false }: { reviews?: boolean } = {}) {
   return [
     ...(reviews ? [{ href: localizePath(locale, 'reviews'), label: t('footer.reviews') }] : []),
+    { href: localizePath(locale, 'help'), label: t('footer.help') },
     // Памятку читают рядом с формой заявки, поэтому она открывается в новой вкладке.
     { href: localizePath(locale, 'speaker-guide'), label: t('footer.speakerGuide'), external: true },
     { href: localizePath(locale, 'privacy'), label: t('footer.rules') },

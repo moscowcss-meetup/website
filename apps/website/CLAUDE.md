@@ -126,6 +126,11 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   page's language: chip, big title, `facts` after slashes, counts of meetups, talks and speakers with plural labels and a
   strip of recent meetup photos (`aboutStatsOf`, `aboutPhotosOf`, `pluralFormOf` in `src/content/about.ts`, tested), the
   body in a dashed panel and contact cards in `#contacts` with pill links.
+- **Help page** (`/help/`): a document with `help` renders through `components/HelpPage.astro` in the about page's
+  language: numbered need cards with outlined `01…`, reach numbers from content next to the archive counts
+  (`aboutStatsOf`), an offer list, the venues of past meetups falling in a `TagPile` (`venuesOf` in
+  `src/content/help.ts`, tested: newest first, once each, online-only meetups skipped) and a black contact block. The
+  footer links it on every page; the FAQ and the about page have a card for it.
 - **Speaker guide** (`/speaker-guide/`, a document with `topics` as a `Disclosure`) opens in a new tab from the
   footer and from any content link: `NEW_TAB_PATHS` in `src/content/markdown-safety.ts`, so a reader returns to the
   form or the FAQ.

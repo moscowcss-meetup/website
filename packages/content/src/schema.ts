@@ -252,6 +252,13 @@ export const FaqSchema = z.object({
 });
 
 // Служебный документ без привязки к митапам: политика обработки персональных данных.
+// Карточка со ссылками: контакт на странице «О сообществе», просьба на странице «Как помочь».
+const LinkCardSchema = z.object({
+  title: z.string().min(1),
+  text: z.string().min(1),
+  links: z.array(z.object({ label: z.string().min(1), url })).min(1),
+});
+
 export const DocumentSchema = z.object({
   title: z.string().min(1).max(70),
   description: z.string().min(50).max(160),
@@ -267,15 +274,25 @@ export const DocumentSchema = z.object({
   contacts: z
     .object({
       lead: z.string().min(1),
-      items: z
-        .array(
-          z.object({
-            title: z.string().min(1),
-            text: z.string().min(1),
-            links: z.array(z.object({ label: z.string().min(1), url })).min(1),
-          }),
-        )
-        .min(1),
+      items: z.array(LinkCardSchema).min(1),
+    })
+    .optional(),
+  // С этим блоком документ свёрстан как страница «Как помочь митапу»: просьбы, цифры для партнёра,
+  // что сообщество даёт, площадки (их список сайт собирает из митапов) и контакт.
+  help: z
+    .object({
+      needs: z.object({ title: z.string().min(1), items: z.array(LinkCardSchema).min(1) }),
+      reach: z.object({
+        title: z.string().min(1),
+        lead: z.string().min(1),
+        // Цифры охвата пишутся руками: сайт их не измеряет. Значение — строка, чтобы влезло «до 250».
+        items: z
+          .array(z.object({ value: z.string().min(1), label: z.string().min(1), note: z.string().min(1).optional() }))
+          .min(1),
+      }),
+      offer: z.object({ title: z.string().min(1), items: z.array(z.string().min(1)).min(1) }),
+      venues: z.object({ title: z.string().min(1), text: z.string().min(1) }),
+      contact: LinkCardSchema,
     })
     .optional(),
   draft: z.boolean().default(false),

@@ -1,0 +1,175 @@
+---
+import { render } from 'astro:content';
+import BlockTitle from '@moscowcss/ui/components/BlockTitle';
+import TagPile from '@moscowcss/ui/components/TagPile';
+import { aboutStatsOf, pluralFormOf } from '../content/about';
+import { loadCatalog, type DocumentEntry } from '../content/catalog';
+import { venuesOf } from '../content/help';
+import { opensInNewTab } from '../content/markdown-safety';
+import { useTranslations, type Locale } from '../i18n';
+import { action, actions, block, chip, heroText, inner, main, slashes, title as titleClass, topRow } from './DetailPage.css';
+import {
+  contact,
+  contactAction,
+  contactText,
+  contactTitle,
+  intro,
+  need,
+  needNumber,
+  needText,
+  needTitle,
+  needs,
+  number,
+  numberLabel,
+  numberNote,
+  numberValue,
+  numberValueArchive,
+  numbers,
+  offer,
+  offerItem,
+  pile,
+  sectionLead,
+  venues,
+  venuesText,
+} from './HelpPage.css';
+
+interface Props {
+  entry: DocumentEntry;
+  locale: Locale;
+}
+
+const { entry, locale } = Astro.props;
+const t = useTranslations(locale);
+const catalog = await loadCatalog();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { Content } = await render(entry as any);
+const { title, facts = [], help } = entry.data;
+if (!help) throw new Error(`${entry.id}: страница «Как помочь» без блока help`);
+
+// Цифры архива сайт считает сам, охват пишет редактор: вместе они — то, что деврел покажет команде.
+const archive = aboutStatsOf(catalog, locale);
+const archiveNumbers = (['meetups', 'talks', 'speakers'] as const).map((kind) => ({
+  value: String(archive[kind]),
+  label: t(`about.${kind}.${pluralFormOf(archive[kind], locale)}`),
+}));
+const venueNames = venuesOf(catalog.events, locale);
+
+const newTab = (url: string) => (opensInNewTab(url) ? { target: '_blank', rel: 'noopener noreferrer' } : {});
+const order = (index: number) => String(index + 1).padStart(2, '0');
+---
+
+<main id="main" tabindex="-1" class={main} data-pagefind-body>
+  <div class={inner}>
+    <div class={heroText}>
+      <div class={topRow}>
+        <span class={chip}>{t('site.name')}</span>
+      </div>
+      <h1 class={titleClass}>{title}</h1>
+      {
+        facts.length > 0 && (
+          <ul class={slashes}>
+            {facts.map((fact) => (
+              <li>{fact}</li>
+            ))}
+          </ul>
+        )
+      }
+      <div class={intro}>
+        <Content />
+      </div>
+    </div>
+
+    <section class={block} aria-labelledby="help-needs">
+      <BlockTitle id="help-needs">{help.needs.title}</BlockTitle>
+      <ol class={needs}>
+        {
+          help.needs.items.map((item, index) => (
+            <li>
+              <article class={need}>
+                <span class={needNumber} aria-hidden="true">
+                  {order(index)}
+                </span>
+                <h3 class={needTitle}>{item.title}</h3>
+                <p class={needText}>{item.text}</p>
+                <ul class={actions}>
+                  {item.links.map((link) => (
+                    <li>
+                      <a class={action} href={link.url} {...newTab(link.url)}>
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class={block} aria-labelledby="help-reach">
+      <BlockTitle id="help-reach">{help.reach.title}</BlockTitle>
+      <p class={sectionLead}>{help.reach.lead}</p>
+      <ul class={numbers}>
+        {
+          help.reach.items.map((item) => (
+            <li class={number}>
+              <span class={numberValue}>{item.value}</span>
+              <span class={numberLabel}>{item.label}</span>
+              {item.note && <span class={numberNote}>{item.note}</span>}
+            </li>
+          ))
+        }
+        {
+          archiveNumbers.map((item) => (
+            <li class={number}>
+              <span class:list={[numberValue, numberValueArchive]}>{item.value}</span>
+              <span class={numberLabel}>{item.label}</span>
+              <span class={numberNote}>{t('help.archiveNote')}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class={block} aria-labelledby="help-offer">
+      <BlockTitle id="help-offer">{help.offer.title}</BlockTitle>
+      <ul class={offer}>
+        {help.offer.items.map((item) => <li class={offerItem}>{item}</li>)}
+      </ul>
+    </section>
+
+    {
+      venueNames.length > 0 && (
+        <section class={venues} aria-labelledby="help-venues">
+          <div class={venuesText}>
+            <BlockTitle id="help-venues">{help.venues.title}</BlockTitle>
+            <p class={sectionLead}>{help.venues.text}</p>
+            <a class={action} href="#help-contact">
+              {help.contact.title}
+            </a>
+          </div>
+          <TagPile class={pile} tags={venueNames} label={help.venues.title} />
+        </section>
+      )
+    }
+
+    <section class={contact} id="help-contact" aria-labelledby="help-contact-title">
+      <h2 class={contactTitle} id="help-contact-title">
+        {help.contact.title}
+      </h2>
+      <p class={contactText}>{help.contact.text}</p>
+      <ul class={actions}>
+        {
+          help.contact.links.map((link) => (
+            <li>
+              <a class={contactAction} href={link.url} {...newTab(link.url)}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</main>
