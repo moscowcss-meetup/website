@@ -99,6 +99,7 @@ export function nextMeetupText(next: ArchiveNext, base: URL): string {
     next.registrationUrl
       ? `Registration: ${next.registrationUrl}`
       : 'Registration is not open yet: it is announced in the Telegram channel https://t.me/moscowcss.',
+    next.networklyUrl && `Registration on Networkly: ${next.networklyUrl}`,
     next.streamUrl && `Stream: ${next.streamUrl}`,
     next.tags.length > 0 && `Topics: ${next.tags.join(', ')}.`,
     next.programme.length > 0 && 'Programme:',

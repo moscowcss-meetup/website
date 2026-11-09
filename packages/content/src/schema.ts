@@ -110,6 +110,8 @@ const EventFields = z.object({
   tags: z.array(z.string().min(1)).default([]),
   passportRequired: z.boolean(),
   registrationUrl: url.optional(),
+  // Запасная регистрация в Networkly: ссылка рядом с основной, плавающая кнопка ведёт на registrationUrl.
+  networklyUrl: url.optional(),
   streamUrl: url.optional(),
   recordingUrl: url.optional(),
   // Фотоальбомы митапа: сами фотографии на сайт не копируются. Можно один, можно оба.

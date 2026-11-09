@@ -104,6 +104,7 @@ export function markdownOf(page: PublicPage, catalog: MarkdownCatalog, context: 
       });
       const links = eventLinksOf(event, context.now, {
         registration: t('event.registration'),
+        networkly: t('event.networkly'),
         stream: t('event.stream'),
         recording: t('event.recording'),
         vkPhotos: t('event.vkPhotos'),

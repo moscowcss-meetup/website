@@ -80,6 +80,7 @@ const INVARIANTS = {
     'venue.mapUrl',
     'venue.coordinates',
     'registrationUrl',
+    'networklyUrl',
     'streamUrl',
     'recordingUrl',
     'vkPhotosUrl',

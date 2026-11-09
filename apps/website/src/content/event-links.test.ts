@@ -5,9 +5,10 @@ import { eventLinksOf } from './event-links';
 
 vi.mock('astro:content', () => ({ getCollection: vi.fn() }));
 
-const labels = { registration: 'Рег', stream: 'Трансляция', recording: 'Запись', vkPhotos: 'ВК', diskPhotos: 'Диск', map: 'Карта' };
+const labels = { registration: 'Рег', networkly: 'Networkly', stream: 'Трансляция', recording: 'Запись', vkPhotos: 'ВК', diskPhotos: 'Диск', map: 'Карта' };
 const meetup = event('ru/30', {
   registrationUrl: 'https://example.com/reg',
+  networklyUrl: 'https://networkly.app/event/1',
   recordingUrl: 'https://example.com/rec',
   vkPhotosUrl: 'https://vk.com/album-1_2',
   diskPhotosUrl: 'https://disk.yandex.ru/d/x',
@@ -18,15 +19,15 @@ const start = meetup.data.date.getTime();
 describe('eventLinksOf', () => {
   it('будущий митап: регистрация есть', () => {
     const links = eventLinksOf(meetup, new Date(start - 1000), labels);
-    expect(links.map((link) => link.label)).toEqual(['Рег', 'Запись', 'ВК', 'Диск', 'Карта']);
+    expect(links.map((link) => link.label)).toEqual(['Рег', 'Networkly', 'Запись', 'ВК', 'Диск', 'Карта']);
   });
 
   it('идущий митап (до конца EVENT_DURATION_MS): регистрация ещё есть', () => {
     const links = eventLinksOf(meetup, new Date(start + EVENT_DURATION_MS), labels);
-    expect(links.map((link) => link.label)).toContain('Рег');
+    expect(links.map((link) => link.label)).toEqual(expect.arrayContaining(['Рег', 'Networkly']));
   });
 
-  it('прошедший митап: регистрации нет, оба альбома и запись остаются', () => {
+  it('прошедший митап: обеих регистраций нет, оба альбома и запись остаются', () => {
     const links = eventLinksOf(meetup, new Date(start + EVENT_DURATION_MS + 1), labels);
     expect(links).toEqual([
       { href: 'https://example.com/rec', label: 'Запись' },

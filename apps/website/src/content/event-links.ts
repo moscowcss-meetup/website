@@ -7,6 +7,7 @@ export interface EventLink {
 
 export interface EventLinkLabels {
   registration: string;
+  networkly: string;
   stream: string;
   recording: string;
   vkPhotos: string;
@@ -19,9 +20,11 @@ export interface EventLinkLabels {
  * закрыта, и ссылка на неё вводила бы в заблуждение.
  */
 export function eventLinksOf(event: EventEntry, now: Date, labels: EventLinkLabels): EventLink[] {
-  const { registrationUrl, streamUrl, recordingUrl, vkPhotosUrl, diskPhotosUrl, venue } = event.data;
+  const { registrationUrl, networklyUrl, streamUrl, recordingUrl, vkPhotosUrl, diskPhotosUrl, venue } = event.data;
+  const past = isPastEvent(event, now);
   const links: (EventLink | undefined)[] = [
-    registrationUrl && !isPastEvent(event, now) ? { href: registrationUrl, label: labels.registration } : undefined,
+    registrationUrl && !past ? { href: registrationUrl, label: labels.registration } : undefined,
+    networklyUrl && !past ? { href: networklyUrl, label: labels.networkly } : undefined,
     streamUrl ? { href: streamUrl, label: labels.stream } : undefined,
     recordingUrl ? { href: recordingUrl, label: labels.recording } : undefined,
     vkPhotosUrl ? { href: vkPhotosUrl, label: labels.vkPhotos } : undefined,

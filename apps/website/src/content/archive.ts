@@ -108,6 +108,7 @@ export function nextMeetupOf(
     modes: event.data.modes,
     tags: event.data.tags,
     registrationUrl: event.data.registrationUrl,
+    networklyUrl: event.data.networklyUrl,
     streamUrl: event.data.streamUrl,
     programme: scheduleOf(event, inLocale(catalog.talks)).map((item) =>
       item.kind === 'talk'

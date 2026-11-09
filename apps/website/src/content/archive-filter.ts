@@ -98,6 +98,7 @@ export interface ArchiveNext {
   modes: string[];
   tags: string[];
   registrationUrl: string | undefined;
+  networklyUrl: string | undefined;
   streamUrl: string | undefined;
   programme: ArchiveProgrammeItem[];
 }

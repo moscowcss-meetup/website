@@ -72,7 +72,8 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   `tags` as a `TagPile`; the floating `CallToAction` renders only for an upcoming
   meetup with `registrationUrl` (label `hero.register`, accessible name
   `hero.registerLabel`). To see it, build with `BUILD_NOW` set before that
-  meetup's date. A past meetup has no button; `data-visual="navbar"` captures only
+  meetup's date. An optional `networklyUrl` adds a Networkly registration link to the Hero and the
+  meetup page; the button still goes to `registrationUrl`. A past meetup has no button; `data-visual="navbar"` captures only
   the sticky top row of the header.
 - **Meetup date** is `date` (a day) + `time` (Moscow time). "Nearest meetup" is
   computed at build time; a meetup stays "upcoming" for 4 hours after its start.

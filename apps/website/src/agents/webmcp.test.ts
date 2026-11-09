@@ -107,6 +107,7 @@ const archive = {
     modes: ['оффлайн', 'онлайн'],
     tags: ['AI'],
     registrationUrl: undefined,
+    networklyUrl: undefined,
     streamUrl: undefined,
     programme: [
       { kind: 'talk', time: '19:00', title: 'Якоря', talk: 'anchor', speakers: ['Пётр Ёлкин'] },

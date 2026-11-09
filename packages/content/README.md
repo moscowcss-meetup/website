@@ -372,6 +372,7 @@ src/
 | `tags` | нет | Темы митапа, они падают плашками в верхней части главной: `- "popover api"`. Тему с решёткой пишут в кавычках: `"#вопрос_спикеру"`. Список переводится вместе с текстом, в `en` свои формулировки. Нет тем — нет плашек. |
 | `passportRequired` | да | `true`, если вход по паспорту. |
 | `registrationUrl` | нет | Ссылка на регистрацию. |
+| `networklyUrl` | нет | Запасная регистрация в Networkly: ссылка в верхнем блоке главной и на странице митапа. Плавающая кнопка всё равно ведёт на `registrationUrl`. |
 | `streamUrl` | нет | Ссылка на трансляцию. Пока её нет, поле не пишут. |
 | `recordingUrl` | нет | Ссылка на запись после митапа. |
 | `vkPhotosUrl` | нет | Фотоальбом митапа ВКонтакте: только `vk.com` или `vk.ru`. Сами фотографии на сайт не копируются. |
@@ -530,7 +531,7 @@ HTML: пояснения пишите в frontmatter строкой с `#`.
 разошлись:
 
 - митап: `date`, `time`, `passportRequired`, `venue.mapUrl`, `venue.coordinates`, `registrationUrl`,
-  `streamUrl`, `recordingUrl`, `vkPhotosUrl`, `diskPhotosUrl`, `partner`, время и `kind` в `schedule`;
+  `networklyUrl`, `streamUrl`, `recordingUrl`, `vkPhotosUrl`, `diskPhotosUrl`, `partner`, время и `kind` в `schedule`;
 - доклад: `event`, `speakers`, `time`, `slidesUrl`, `videoUrl`, `cover`;
 - спикер: `photo`, `links`;
 - партнёр: `url`, `handle`, `logo`, `qrUrl`;
