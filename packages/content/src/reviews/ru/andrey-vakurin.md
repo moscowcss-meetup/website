@@ -1,7 +1,7 @@
 ---
-name: "Андрей"
+name: "Андрей Вакурин"
 category: guest
-photo: ../assets/andrey.jpg
+photo: ../assets/andrey-vakurin.jpg
 ---
 
 **Считаю сообщество Moscow CSS лучшим сообществом!**  
