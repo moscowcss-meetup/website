@@ -72,8 +72,8 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   `tags` as a `TagPile`; the floating `CallToAction` renders only for an upcoming
   meetup with `registrationUrl` (label `hero.register`, accessible name
   `hero.registerLabel`). To see it, build with `BUILD_NOW` set before that
-  meetup's date. An optional `networklyUrl` adds a Networkly registration link to the Hero and the
-  meetup page; the button still goes to `registrationUrl`. With `networklyFormUrl` (an embeddable form on
+  meetup's date. An optional `networklyUrl` adds a Networkly registration link to the meetup page
+  (the home page reaches Networkly through the dialog); the button still goes to `registrationUrl`. With `networklyFormUrl` (an embeddable form on
   networkly.app) or `timepadWidget` (`event`, `customized`) the button opens `RegistrationDialog` instead,
   tabs Networkly then Timepad (`src/content/registration.ts`); without JS it stays the Timepad link. Networkly
   lets only `https:` sites frame its forms (`frame-ancestors`), so on the local `http://` preview its tab ends
