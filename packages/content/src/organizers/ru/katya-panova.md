@@ -3,7 +3,6 @@ name: "Катя Панова"
 status: current
 photo: ../assets/katya-panova.png
 contacts:
-  telegram: https://t.me/Evlampiya_kazimirovna
   channel: https://t.me/chtob_chto
 ---
 
