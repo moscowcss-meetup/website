@@ -23,7 +23,8 @@
     "@vanilla-extract/vite-plugin": "5.2.6",
     "astro": "7.4.4",
     "qrcode-generator": "2.0.4",
-    "sharp": "0.35.5"
+    "sharp": "0.35.5",
+    "typograf": "7.9.1"
   },
   "devDependencies": {
     "@moscowcss/eslint-config": "workspace:*",

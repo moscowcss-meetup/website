@@ -604,7 +604,9 @@ regenerate rather than edit).
   `https` only; bodies are Markdown only. The check is a hast plugin,
   `src/content/markdown-safety.ts`, wired in through `astro.config.mjs`: raw
   HTML and any `href`/`src` that is not `https:`/`mailto:` after URL resolution
-  fail the build. Do not weaken it with regexes over the source text. Drafts
+  fail the build. Do not weaken it with regexes over the source text. Markdown
+  bodies are typographed at build time (Typograf, `src/content/typography.ts`):
+  short prepositions and conjunctions keep a non-breaking space to the next word. Drafts
   (`draft: true`) are excluded from the site.
 - **Pages.** Home (`/`, `/en/`: nearest future meetup, or the last past one
   without registration; past meetups live on `/events/`, which links the RSS feed under its heading), `/events/<n>/`, `/talks/<name>/`,

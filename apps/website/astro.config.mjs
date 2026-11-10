@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import { markdownSafety } from './src/content/markdown-safety.ts';
+import { markdownTypography } from './src/content/typography.ts';
 
 // Прод: https://css.moscow/ (custom domain на GitHub Pages).
 export default defineConfig({
@@ -18,7 +19,8 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   // Сырой HTML и ссылки не на https/mailto в контенте роняют сборку (XSS через Markdown).
-  integrations: [markdownSafety],
+  // Типограф по тексту Markdown: неразрывные пробелы, тире, ёлочки в русском (правила в typography.ts).
+  integrations: [markdownSafety, markdownTypography],
   vite: {
     plugins: [vanillaExtractPlugin()],
   },

@@ -46,7 +46,7 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   `vars.layout.*` only where the value grows with width.
 - **Import `@moscowcss/fonts` once** at the page/layout root (side-effect CSS).
 - `astro.config.mjs` registers the **vanilla-extract Vite plugin** and the
-  `markdownSafety` integration — keep both. The plugin
+  `markdownSafety` and `markdownTypography` integrations — keep all three. The plugin
   (`src/content/markdown-safety.ts`) fails the build on raw HTML in content and on
   any `href`/`src` that is not `https:`/`mailto:` after URL resolution. Check
   stays on the parsed tree (hast), never regexes over the source.
@@ -57,6 +57,13 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   or unchanged content keeps the old HTML and the old parsed frontmatter locally: an entry is re-parsed only
   when its file changes, and a dev server running during the schema change caches it without the new fields
   (CI starts clean).
+- **Typography** (`src/content/typography.ts`, Typograf): every text node of a content Markdown body is
+  typographed in its file's language (`ru` with `en-US` rules for Latin words, `en`): non-breaking space after
+  short words (prepositions and conjunctions stay with the next word, also before a link), dashes, «ёлочки»
+  in Russian, ellipsis. Text in `code`, `pre`, `kbd` is left alone. Rules that harm text about CSS (decimal
+  comma, fractions, math signs, ISO dates, phone numbers, keyboard-layout fixes) are off in `DISABLED_RULES`;
+  edge trimming is off because a node is a piece of a paragraph. Frontmatter strings (titles, names,
+  descriptions) are not typographed.
 - `site` is `https://css.moscow`, `trailingSlash: 'always'`: canonical, hreflang
   and internal links are absolute/with a trailing slash.
 - **Content entries** are created with `pnpm new:event | new:talk | new:speaker |
