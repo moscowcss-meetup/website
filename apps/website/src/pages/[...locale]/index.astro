@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import CallToAction from '@moscowcss/ui/components/CallToAction';
+import RegistrationDialog from '@moscowcss/ui/components/RegistrationDialog';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AboutSection from '../../sections/AboutSection.astro';
 import HeroSection from '../../sections/HeroSection.astro';
@@ -12,6 +13,7 @@ import OrganizersSection from '../../sections/OrganizersSection.astro';
 import { loadCatalog, localeOf, upcomingEvent } from '../../content/catalog';
 import { buildNow } from '../../content/now';
 import { organizersByStatus } from '../../content/organizers';
+import { registrationTabsOf } from '../../content/registration';
 import { defaultLocale, localizePath, locales, useTranslations, type Locale } from '../../i18n';
 
 // Маршрут `[...locale]`: у языка по умолчанию параметр пустой, поэтому ru живёт в `/`, en в `/en/`.
@@ -36,6 +38,18 @@ if (!page) throw new Error(`Missing page content: pages/${locale}/index.md`);
 
 const events = inLocale(catalog.events);
 const featured = upcomingEvent(events, now);
+// Окно с формами регистрации — только у ближайшего митапа, пока он не прошёл.
+const registrationTabs =
+  featured && !featured.past
+    ? registrationTabsOf(featured.event, {
+        networkly: t('registration.networkly'),
+        networklyFrame: t('registration.networklyFrame'),
+        networklyFallback: t('registration.networklyFallback'),
+        timepad: t('registration.timepad'),
+        timepadFallback: t('registration.timepadFallback'),
+      })
+    : [];
+const registrationDialogId = 'registration-dialog';
 const partner = featured?.event.data.partner
   ? inLocale(catalog.partners).find((entry) => entry.id === `${locale}/${featured.event.data.partner}`)
   : undefined;
@@ -76,9 +90,26 @@ const alternates = locales.map((code) => ({ locale: code, path: localizePath(cod
     <AboutSection page={page} locale={locale} />
     {
       featured && !featured.past && featured.event.data.registrationUrl && (
-        <CallToAction href={featured.event.data.registrationUrl} aria-label={t('hero.registerLabel')}>
+        <CallToAction
+          href={featured.event.data.registrationUrl}
+          aria-label={t('hero.registerLabel')}
+          data-registration-open={registrationTabs.length > 0 ? registrationDialogId : undefined}
+        >
           {t('hero.register')}
         </CallToAction>
+      )
+    }
+    {
+      registrationTabs.length > 0 && (
+        <RegistrationDialog
+          id={registrationDialogId}
+          heading={t('registration.title')}
+          closeLabel={t('registration.close')}
+          tabsLabel={t('registration.tabs')}
+          loadingLabel={t('registration.loading')}
+          failedLabel={t('registration.failed')}
+          tabs={registrationTabs}
+        />
       )
     }
   </main>

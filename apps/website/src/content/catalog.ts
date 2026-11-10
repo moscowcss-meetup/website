@@ -81,6 +81,8 @@ const INVARIANTS = {
     'venue.coordinates',
     'registrationUrl',
     'networklyUrl',
+    'networklyFormUrl',
+    'timepadWidget',
     'streamUrl',
     'recordingUrl',
     'vkPhotosUrl',

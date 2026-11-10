@@ -6,6 +6,7 @@ const contract = {
       fast: null,
       base: null,
       fall: null,
+      spin: null,
     },
     easing: {
       standard: null,
@@ -22,6 +23,8 @@ const values = {
       fast: '120ms',
       base: '200ms',
       fall: '900ms',
+      // Один оборот лоадера.
+      spin: '800ms',
     },
     easing: {
       standard: 'cubic-bezier(0.2, 0, 0, 1)',

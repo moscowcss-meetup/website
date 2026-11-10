@@ -49,6 +49,8 @@ const urlOn = (hosts: readonly string[], message: string) =>
 
 const vkVideoUrl = urlOn(["vk.com", "vk.ru", "vkvideo.ru"], "нужна ссылка на VK Видео: vk.com, vk.ru или vkvideo.ru");
 const vkPhotosUrl = urlOn(["vk.com", "vk.ru"], "нужна ссылка на альбом ВКонтакте: vk.com или vk.ru");
+// Адрес из контента попадает в iframe на нашей странице: фрейм разрешён только с самой площадки.
+const networklyFormUrl = urlOn(["networkly.app"], "нужна ссылка на форму Networkly: networkly.app");
 const diskPhotosUrl = urlOn(
   ["disk.yandex.ru", "disk.yandex.com", "disk.360.yandex.ru", "yadi.sk"],
   "нужна ссылка на Яндекс Диск: disk.yandex.ru, disk.360.yandex.ru или yadi.sk",
@@ -112,6 +114,10 @@ const EventFields = z.object({
   registrationUrl: url.optional(),
   // Запасная регистрация в Networkly: ссылка рядом с основной, плавающая кнопка ведёт на registrationUrl.
   networklyUrl: url.optional(),
+  // Формы регистрации в окне по кнопке «position: в зале».
+  networklyFormUrl: networklyFormUrl.optional(),
+  // Виджет Timepad: `event` — номер события, `customized` — номер настроек оформления организатора.
+  timepadWidget: z.object({ event: z.number().int().positive(), customized: z.number().int().positive() }).optional(),
   streamUrl: url.optional(),
   recordingUrl: url.optional(),
   // Фотоальбомы митапа: сами фотографии на сайт не копируются. Можно один, можно оба.

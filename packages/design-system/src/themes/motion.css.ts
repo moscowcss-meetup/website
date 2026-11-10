@@ -12,6 +12,7 @@ globalStyle(':root', {
         [vars.motion.duration.fast]: '0ms',
         [vars.motion.duration.base]: '0ms',
         [vars.motion.duration.fall]: '0ms',
+        [vars.motion.duration.spin]: '0ms',
       },
     },
   },

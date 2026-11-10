@@ -51,6 +51,9 @@ const contract = {
     reviewPhoto: null,
     reviewPhotoLarge: null,
     reviewDialogWidth: null,
+    registrationDialogWidth: null,
+    registrationFrameHeight: null,
+    loader: null,
     reviewGalleryMin: null,
     reviewTapeWidth: null,
     reviewTapeHeight: null,
@@ -108,6 +111,9 @@ const values = {
     reviewPhoto: '4.5rem', // 72px
     reviewPhotoLarge: '6rem', // 96px
     reviewDialogWidth: '48rem', // 768px
+    registrationDialogWidth: '40rem', // 640px
+    registrationFrameHeight: '40rem', // 640px
+    loader: '2rem', // 32px
     reviewGalleryMin: '12rem', // 192px
     reviewTapeWidth: '5.5rem', // 88px
     reviewTapeHeight: '1.5rem', // 24px

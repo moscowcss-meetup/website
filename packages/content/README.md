@@ -373,6 +373,8 @@ src/
 | `passportRequired` | да | `true`, если вход по паспорту. |
 | `registrationUrl` | нет | Ссылка на регистрацию. |
 | `networklyUrl` | нет | Запасная регистрация в Networkly: ссылка в верхнем блоке главной и на странице митапа. Плавающая кнопка всё равно ведёт на `registrationUrl`. |
+| `networklyFormUrl` | нет | Форма Networkly для встраивания (`https://networkly.app/register/<номер>/embedded`). С ней или с `timepadWidget` кнопка «position: в зале» открывает окно с вкладками Networkly и Timepad. |
+| `timepadWidget` | нет | Виджет Timepad в том же окне: `event` — номер события (из ссылки Timepad), `customized` — номер настроек оформления (`data-timepad-customized` из кода виджета). |
 | `streamUrl` | нет | Ссылка на трансляцию. Пока её нет, поле не пишут. |
 | `recordingUrl` | нет | Ссылка на запись после митапа. |
 | `vkPhotosUrl` | нет | Фотоальбом митапа ВКонтакте: только `vk.com` или `vk.ru`. Сами фотографии на сайт не копируются. |
@@ -531,7 +533,7 @@ HTML: пояснения пишите в frontmatter строкой с `#`.
 разошлись:
 
 - митап: `date`, `time`, `passportRequired`, `venue.mapUrl`, `venue.coordinates`, `registrationUrl`,
-  `networklyUrl`, `streamUrl`, `recordingUrl`, `vkPhotosUrl`, `diskPhotosUrl`, `partner`, время и `kind` в `schedule`;
+  `networklyUrl`, `networklyFormUrl`, `timepadWidget`, `streamUrl`, `recordingUrl`, `vkPhotosUrl`, `diskPhotosUrl`, `partner`, время и `kind` в `schedule`;
 - доклад: `event`, `speakers`, `time`, `slidesUrl`, `videoUrl`, `cover`;
 - спикер: `photo`, `links`;
 - партнёр: `url`, `handle`, `logo`, `qrUrl`;

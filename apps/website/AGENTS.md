@@ -73,7 +73,11 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   meetup with `registrationUrl` (label `hero.register`, accessible name
   `hero.registerLabel`). To see it, build with `BUILD_NOW` set before that
   meetup's date. An optional `networklyUrl` adds a Networkly registration link to the Hero and the
-  meetup page; the button still goes to `registrationUrl`. A past meetup has no button; `data-visual="navbar"` captures only
+  meetup page; the button still goes to `registrationUrl`. With `networklyFormUrl` (an embeddable form on
+  networkly.app) or `timepadWidget` (`event`, `customized`) the button opens `RegistrationDialog` instead,
+  tabs Networkly then Timepad (`src/content/registration.ts`); without JS it stays the Timepad link. Networkly
+  only lets listed sites frame its forms (`frame-ancestors`): until css.moscow is listed the tab stays blank
+  and the link above it is the way in. A past meetup has no button; `data-visual="navbar"` captures only
   the sticky top row of the header.
 - **Meetup date** is `date` (a day) + `time` (Moscow time). "Nearest meetup" is
   computed at build time; a meetup stays "upcoming" for 4 hours after its start.

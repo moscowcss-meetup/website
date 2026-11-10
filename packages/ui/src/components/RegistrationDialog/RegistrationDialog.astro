@@ -1,0 +1,143 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Close } from '@moscowcss/icons';
+import {
+  closeButton,
+  content,
+  dialog,
+  embed,
+  failed,
+  fallback,
+  fallbackLink,
+  head,
+  loading,
+  panel,
+  spinner,
+  status,
+  tab,
+  tabList,
+  title,
+} from './RegistrationDialog.css';
+
+const Tag = 'dialog';
+
+export interface RegistrationTab {
+  /** Название вкладки: площадка регистрации */
+  label: string;
+  /** Адрес регистрации на сайте площадки: запасной путь, если форма не открылась */
+  fallbackHref: string;
+  /** Подпись запасной ссылки */
+  fallbackLabel: string;
+  /** Адрес формы, которую вкладка показывает во фрейме */
+  frameSrc?: string;
+  /** Название фрейма для скринридера */
+  frameTitle?: string;
+  /** Виджет Timepad: номер события и номер настроек оформления организатора */
+  timepad?: { event: number; customized: number };
+}
+
+// `id` обязателен по смыслу: кнопки с `data-registration-open="<id>"` открывают это окно.
+interface Props extends HTMLAttributes<typeof Tag> {
+  /** Заголовок окна */
+  heading: string;
+  /** Доступное имя кнопки закрытия */
+  closeLabel: string;
+  /** Доступное имя списка вкладок */
+  tabsLabel: string;
+  /** Текст, пока форма загружается */
+  loadingLabel: string;
+  /** Текст, если форма не загрузилась за `timeoutMs` */
+  failedLabel: string;
+  /** Вкладки в порядке показа; первая открыта сразу */
+  tabs: RegistrationTab[];
+  /** Сколько ждать форму, прежде чем показать, что она не загрузилась, мс */
+  timeoutMs?: number;
+}
+
+const {
+  heading,
+  closeLabel,
+  tabsLabel,
+  loadingLabel,
+  failedLabel,
+  tabs,
+  timeoutMs = 15000,
+  id = 'registration-dialog',
+  class: className,
+  ...attrs
+} = Astro.props;
+
+const titleId = `${id}-title`;
+const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
+---
+<Tag
+  class:list={[dialog, className]}
+  id={id}
+  aria-labelledby={titleId}
+  data-registration-dialog
+  data-timeout={timeoutMs}
+  {...attrs}
+>
+  <div class={content}>
+    <div class={head}>
+      <h2 class={title} id={titleId}>{heading}</h2>
+      <button type="button" class={closeButton} data-registration-close aria-label={closeLabel}>
+        <Close aria-hidden="true" />
+      </button>
+    </div>
+    <div class={tabList} role="tablist" aria-label={tabsLabel}>
+      {
+        tabs.map((item, index) => (
+          <button
+            type="button"
+            class={tab}
+            role="tab"
+            id={`${id}-tab-${index}`}
+            aria-controls={`${id}-panel-${index}`}
+            aria-selected={index === 0 ? 'true' : 'false'}
+            tabindex={index === 0 ? 0 : -1}
+            data-registration-tab
+          >
+            {item.label}
+          </button>
+        ))
+      }
+    </div>
+    {
+      tabs.map((item, index) => (
+        <div
+          class={panel}
+          role="tabpanel"
+          id={`${id}-panel-${index}`}
+          aria-labelledby={`${id}-tab-${index}`}
+          hidden={index !== 0}
+          data-registration-panel
+          data-state="idle"
+          data-frame-src={item.frameSrc}
+          data-frame-title={item.frameTitle}
+          data-timepad-event={item.timepad?.event}
+          data-timepad-customized={item.timepad?.customized}
+        >
+          <div class={status} role="status">
+            <span class={spinner} aria-hidden="true" />
+            <span class={loading}>{loadingLabel}</span>
+            <span class={failed}>{failedLabel}</span>
+          </div>
+          {/* Ссылка над формой: длинная форма не уводит её за край экрана, а заблокированный фрейм пуст. */}
+          <p class={fallback}>
+            <a class={fallbackLink} href={item.fallbackHref} {...external}>
+              {item.fallbackLabel}
+            </a>
+          </p>
+          <div class={embed} data-registration-embed />
+        </div>
+      ))
+    }
+  </div>
+</Tag>
+
+<script>
+  import { setupRegistrationDialog } from './RegistrationDialog.client';
+
+  document.querySelectorAll<HTMLDialogElement>('dialog[data-registration-dialog]').forEach(setupRegistrationDialog);
+</script>
