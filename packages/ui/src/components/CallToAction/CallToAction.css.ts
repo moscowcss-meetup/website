@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { vars, dimensions } from '@moscowcss/design-system';
 
 // Один и тот же силуэт на грани и на кольце фокуса — кольцо точно повторяет форму.
@@ -46,6 +46,11 @@ export const root = style({
       opacity: 1,
     },
   },
+});
+
+// Кнопка висит над контентом: без отступа снизу ссылка, к которой браузер прокрутил фокус, оказывается под ней.
+globalStyle(`html:has(${root})`, {
+  scrollPaddingBlockEnd: `calc(${vars.adaptive.ctaOffsetBlock} + ${vars.adaptive.ctaSize} + ${vars.spacing.s})`,
 });
 
 export const face = style({
