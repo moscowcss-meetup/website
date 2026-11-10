@@ -26,8 +26,7 @@ describe('registrationTabsOf', () => {
     expect(tabs).toEqual([
       {
         label: 'Networkly',
-        frameSrc: 'https://networkly.app/register/263/embedded',
-        frameTitle: 'Форма Networkly',
+        networkly: { src: 'https://networkly.app/register/263/embedded', title: 'Форма Networkly' },
         fallbackHref: 'https://networkly.app/event/7143',
         fallbackLabel: 'На сайт Networkly',
       },

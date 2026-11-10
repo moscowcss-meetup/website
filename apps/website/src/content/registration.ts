@@ -4,8 +4,7 @@ export interface RegistrationTabData {
   label: string;
   fallbackHref: string;
   fallbackLabel: string;
-  frameSrc?: string;
-  frameTitle?: string;
+  networkly?: { src: string; title: string };
   timepad?: { event: number; customized: number };
 }
 
@@ -27,8 +26,7 @@ export function registrationTabsOf(event: EventEntry, labels: RegistrationLabels
   if (networklyFormUrl) {
     tabs.push({
       label: labels.networkly,
-      frameSrc: networklyFormUrl,
-      frameTitle: labels.networklyFrame,
+      networkly: { src: networklyFormUrl, title: labels.networklyFrame },
       fallbackHref: networklyUrl ?? networklyFormUrl,
       fallbackLabel: labels.networklyFallback,
     });

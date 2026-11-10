@@ -1,3 +1,4 @@
+import { heightFromMessage, MEASURE_COMMAND, THEME_COMMAND, themeForForm } from './networkly';
 import { tabIndexAfterKey } from './tabs';
 
 const INITIALIZED = 'data-registration-dialog-initialized';
@@ -12,12 +13,31 @@ function setState(panel: HTMLElement, state: PanelState) {
   panel.dataset['state'] = state;
 }
 
-function loadFrame(panel: HTMLElement, embed: HTMLElement, done: () => void) {
+function loadNetworkly(panel: HTMLElement, embed: HTMLElement, done: () => void) {
   const frame = document.createElement('iframe');
-  frame.src = panel.dataset['frameSrc'] ?? '';
-  frame.title = panel.dataset['frameTitle'] ?? '';
-  // Чужой фрейм, запрещённый площадкой, тоже даёт `load`: такую форму закрывает запасная ссылка под ней.
-  frame.addEventListener('load', done, { once: true });
+  const src = panel.dataset['networklySrc'] ?? '';
+  const origin = new URL(src).origin;
+  frame.src = src;
+  frame.title = panel.dataset['networklyTitle'] ?? '';
+  const post = (message: unknown) => frame.contentWindow?.postMessage(message, origin);
+  const sendTheme = () => post({ command: THEME_COMMAND, data: themeForForm(document.documentElement.dataset['theme']) });
+
+  // Фрейм, запрещённый площадкой, тоже даёт `load`, поэтому готовность — только ответ формы с высотой.
+  // Слушаем всё время: форма меняет высоту между шагами, а опоздавший ответ снимает «не загрузилась».
+  const onMessage = (event: MessageEvent) => {
+    if (event.source !== frame.contentWindow || event.origin !== origin) return;
+    const height = heightFromMessage(event.data);
+    if (height === undefined) return;
+    frame.style.height = `${height}px`;
+    done();
+  };
+  window.addEventListener('message', onMessage);
+  frame.addEventListener('load', () => {
+    sendTheme();
+    post({ command: MEASURE_COMMAND });
+  });
+  const themeWatch = new MutationObserver(sendTheme);
+  themeWatch.observe(document.documentElement, { attributeFilter: ['data-theme'] });
   embed.append(frame);
 }
 
@@ -57,7 +77,7 @@ function load(panel: HTMLElement, timeoutMs: number) {
     setState(panel, 'ready');
   };
 
-  if (panel.dataset['frameSrc']) loadFrame(panel, embed, done);
+  if (panel.dataset['networklySrc']) loadNetworkly(panel, embed, done);
   else if (panel.dataset['timepadEvent']) stop = loadTimepad(panel, embed, done);
   else done();
 }

@@ -169,7 +169,7 @@ const ru = {
   'registration.loading': 'Форма загружается…',
   'registration.failed': 'Форма не загрузилась.',
   'registration.networkly': 'Networkly',
-  'registration.networklyFrame': 'Форма регистрации Networkly',
+  'registration.networklyFrame': 'Заявка на участие в Networkly',
   'registration.networklyFallback': 'Не открывается форма? Зарегистрируйтесь на сайте Networkly',
   'registration.timepad': 'Timepad',
   'registration.timepadFallback': 'Не открывается форма? Зарегистрируйтесь на сайте Timepad',

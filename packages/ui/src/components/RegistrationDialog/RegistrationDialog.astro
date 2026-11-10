@@ -28,10 +28,8 @@ export interface RegistrationTab {
   fallbackHref: string;
   /** Подпись запасной ссылки */
   fallbackLabel: string;
-  /** Адрес формы, которую вкладка показывает во фрейме */
-  frameSrc?: string;
-  /** Название фрейма для скринридера */
-  frameTitle?: string;
+  /** Форма Networkly во фрейме: адрес встраиваемой формы и название фрейма для скринридера */
+  networkly?: { src: string; title: string };
   /** Виджет Timepad: номер события и номер настроек оформления организатора */
   timepad?: { event: number; customized: number };
 }
@@ -113,8 +111,8 @@ const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
           hidden={index !== 0}
           data-registration-panel
           data-state="idle"
-          data-frame-src={item.frameSrc}
-          data-frame-title={item.frameTitle}
+          data-networkly-src={item.networkly?.src}
+          data-networkly-title={item.networkly?.title}
           data-timepad-event={item.timepad?.event}
           data-timepad-customized={item.timepad?.customized}
         >

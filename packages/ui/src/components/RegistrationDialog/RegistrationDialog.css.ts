@@ -158,6 +158,12 @@ export const embed = style({
     [`${panel}[data-state="idle"] &, ${panel}[data-state="failed"] &`]: {
       display: vars.display.none,
     },
+    // Пока форма грузится, её место не видно, но ширина остаётся: по ней форма считает свою высоту.
+    [`${panel}[data-state="loading"] &`]: {
+      visibility: 'hidden',
+      height: 0,
+      overflow: 'hidden',
+    },
   },
 });
 
