@@ -21,6 +21,8 @@ function loadNetworkly(panel: HTMLElement, embed: HTMLElement, done: () => void)
   frame.title = panel.dataset['networklyTitle'] ?? '';
   const post = (message: unknown) => frame.contentWindow?.postMessage(message, origin);
   const sendTheme = () => post({ command: THEME_COMMAND, data: themeForForm(document.documentElement.dataset['theme']) });
+  const measure = () => post({ command: MEASURE_COMMAND });
+  let shown = false;
 
   // Фрейм, запрещённый площадкой, тоже даёт `load`, поэтому готовность — только ответ формы с высотой.
   // Слушаем всё время: форма меняет высоту между шагами, а опоздавший ответ снимает «не загрузилась».
@@ -30,11 +32,18 @@ function loadNetworkly(panel: HTMLElement, embed: HTMLElement, done: () => void)
     if (height === undefined) return;
     frame.style.height = `${height}px`;
     done();
+    if (!shown) {
+      shown = true;
+      // Первый ответ форма даёт, пока её место скрыто, и он занижен: переспрашиваем, когда её видно.
+      requestAnimationFrame(measure);
+    }
   };
   window.addEventListener('message', onMessage);
+  // Высота формы зависит от ширины окна.
+  window.addEventListener('resize', measure);
   frame.addEventListener('load', () => {
     sendTheme();
-    post({ command: MEASURE_COMMAND });
+    measure();
   });
   const themeWatch = new MutationObserver(sendTheme);
   themeWatch.observe(document.documentElement, { attributeFilter: ['data-theme'] });
