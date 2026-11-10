@@ -1,6 +1,7 @@
 ---
 name: "Sasha Cheremukhina"
 category: partner
+role: "School 21"
 photo: ../assets/sasha-cheremukhina.jpg
 ---
 
