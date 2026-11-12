@@ -1,6 +1,7 @@
 ---
 name: "Darya Peshaya"
 category: partner
+role: "SberMarket/Kuper"
 photo: ../assets/darya-peshaya.jpg
 ---
 

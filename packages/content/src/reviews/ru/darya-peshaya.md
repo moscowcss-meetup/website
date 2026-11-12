@@ -1,6 +1,7 @@
 ---
 name: "Дарья Пешая"
 category: partner
+role: "Сбермаркет/Купер"
 photo: ../assets/darya-peshaya.jpg
 ---
 

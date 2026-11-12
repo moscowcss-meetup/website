@@ -1,6 +1,7 @@
 ---
 name: "Ксения Савченко"
 category: partner
+role: "Сбер"
 gallery:
   - image: ../assets/ksenia-savchenko-meetup.jpg
     alt: "Участники совместного митапа Frontend Community и Moscow CSS машут со сцены"
