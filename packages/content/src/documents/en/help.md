@@ -15,7 +15,7 @@ help:
           - label: "Speaker guide"
             url: "https://css.moscow/en/speaker-guide/"
           - label: "Submit a talk"
-            url: "https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e/"
+            url: "https://css.moscow/en/cfp/"
       - title: "Hands for the site"
         text: "The archive has gaps: cut recordings into talks, find slides, add photos and descriptions. No coding needed, a link in an issue comment already helps."
         links:

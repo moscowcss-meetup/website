@@ -58,8 +58,8 @@ site can be the front door: public forms that post to the bot and need no accoun
 - **Privacy note.** A new section «Формы на сайте» in `/privacy/` (both languages): what is stored, why, where (a server
   in Switzerland), how long (a proposal is deleted after 12 months unless the organisers keep it), how to ask for deletion.
   The forms link to it.
-- **Where the forms are linked.** A «Формы на сайте» card in the Contacts section of `/about/`, and a link to `/cfp/`
-  next to the Yandex form in the speaker guide. The header and the footer already hold their limit of links, and the
+- **Where the forms are linked.** A «Формы на сайте» card in the Contacts section of `/about/`. `/cfp/` replaced the
+  Yandex form after the bot went live (2026-11-15) in the speaker guide, the help page and the FAQ on the home page. The header and the footer already hold their limit of links, and the
   pages are in the sitemap and `llms.txt` without extra code.
 - **Errors.** Field errors sit under their field (`aria-describedby`, `aria-invalid`, the first invalid field takes
   focus); a status line announces the summary through a live region. The error colour token is below AA contrast on
@@ -68,7 +68,6 @@ site can be the front door: public forms that post to the bot and need no accoun
 ## Out of scope
 
 - The bot itself, its storage and the moderation of what arrives.
-- Replacing the Yandex form in the content links: it waits until the bot is deployed.
 - Headers or a CSP for Turnstile: GitHub Pages cannot set them.
 - A retention period for feedback and questions: not decided, the policy says so.
 

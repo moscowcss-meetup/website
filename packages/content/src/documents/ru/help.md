@@ -15,7 +15,7 @@ help:
           - label: "Памятка спикеру"
             url: "https://css.moscow/speaker-guide/"
           - label: "Заявка на доклад"
-            url: "https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e/"
+            url: "https://css.moscow/cfp/"
       - title: "Руки для сайта"
         text: "Архив неполный: нарезать записи по докладам, найти слайды, добавить фото и описания. Программировать не нужно, ссылка в комментарии к задаче уже помогает."
         links:

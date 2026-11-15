@@ -4,6 +4,6 @@ order: 1
 ---
 
 1\. Посмотри [памятку](https://css.moscow/speaker-guide/)\
-2\. [Напиши оргам](#organizers) или заполни [форму заявки](https://forms.yandex.ru/u/6821c71a068ff0fd4ec9d30e/)
+2\. [Напиши оргам](#organizers) или заполни [форму заявки](https://css.moscow/cfp/)
 
 Отправляя форму, ты соглашаешься с [политикой обработки персональных данных](https://css.moscow/privacy/).
