@@ -4,15 +4,11 @@ role: "CEO of GooseLabs studio"
 links:
   - label: "Telegram"
     url: "https://t.me/borisenko_dmitry"
-  - label: "GitHub"
-    url: "https://github.com/goosen-x"
-  - label: "X"
-    url: "https://x.com/goose_labs"
-  - label: "GooseLabs"
+  - label: "gooselabs.ru"
     url: "https://gooselabs.ru"
 photo: ../assets/dmitry-borisenko.jpg
 ---
 
-Full-stack developer from Moscow and CEO of GooseLabs. The studio builds websites and web services, and also [PixelTool](https://pixeltool.pro): over a hundred tools that run right in the browser, from calculators and converters to CSS generators.
+CEO of GooseLabs, a studio that builds websites and web services, plus [PixelTool](https://pixeltool.pro), a collection of more than a hundred tools that run right in the browser. Has spoken at Moscow CSS and Sber Frontend Night.
 
-Works with React, Next.js and TypeScript. In layout, he likes it when CSS solves the problem instead of JavaScript, which is what his talk on pseudo-selectors was about.
+His hobby is Arduino: he builds devices from a solderless kit and flashes them himself. He admits a blinking LED makes him just as happy as a perfectly centered div.
