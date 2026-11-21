@@ -171,7 +171,8 @@ async function checkKeyboard(page, where) {
     await page.keyboard.press('Enter');
     const moved = await page.evaluate(() => document.activeElement?.tagName === 'MAIN');
     if (!moved) report(where, 'skip-link', 'после Enter фокус не перешёл на main');
-    await page.goto(page.url().split('#')[0], { waitUntil: 'load' });
+    // Перезагрузка той же дорогой, что и первый заход: иначе форма появляется посреди обхода и сдвигает ссылки.
+    await open(page, new URL(page.url()).pathname);
     await page.keyboard.press('Tab');
   }
 
