@@ -67,9 +67,9 @@ describe('cardInputOf', () => {
     const [page] = publicPagesOf({ ...data, talks: [], speakers: [] }).filter((p) => p.kind === 'event');
     if (!page) throw new Error('нет страницы');
     expect(cardInputOf(page, data)).toEqual({
-      title: 'Митап в Звук',
+      title: 'Митап в Звук',
       kicker: 'Митап № 31',
-      meta: '9 июля 2026 в 18:00 · Звук',
+      meta: '9 июля 2026 в 18:00 · Звук',
     });
   });
 
@@ -87,8 +87,15 @@ describe('cardInputOf', () => {
     expect(cardInputOf(talkPage, data)).toMatchObject({
       title: 'CSS',
       kicker: 'Доклад',
-      meta: 'Дарья Егорова · Митап в Звук',
+      meta: 'Дарья Егорова · Митап в Звук',
     });
     expect(cardInputOf(speakerPage, data)).toMatchObject({ title: 'Дарья Егорова', meta: 'Дизайнер' });
+  });
+
+  it('типографирует заголовок и подпись: предлог не остаётся в конце строки', () => {
+    const data = { ...catalog, events: [event('ru/31', { tagline: 'Митап в Звук' })], talks: [talk('ru/css', { title: 'Гиперссылки в музыке' })], speakers: [] };
+    const talkPage = publicPagesOf(data).find((p) => p.kind === 'talk');
+    if (!talkPage) throw new Error('нет страницы');
+    expect(cardInputOf(talkPage, data).title).toBe('Гиперссылки в музыке');
   });
 });

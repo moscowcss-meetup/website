@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'node:path';
 import { eventLabel } from './archive';
 import { localeOf, slugOf, type Catalog, type TalkEntry } from './catalog';
+import { typographText } from './typography';
 
 // Обложку каждого доклада рисует `@moscowcss/og` на сборке, в одном стиле для всех: `/covers/<язык>/<доклад>.png`.
 // Карточки анонсов из Telegram (поле `cover`) были вразнобой и больше не показываются.
@@ -46,7 +47,8 @@ export function talkCoverSourceOf(
   const withPhoto = people.find((speaker) => speaker.data.photo !== undefined);
   return {
     label: `MOSCOWCSS_${(event ? eventLabel(event) : talk.data.event).toUpperCase()}`,
-    title: talk.data.title,
+    // На картинке строки переносит satori: без неразрывных пробелов предлог остаётся в конце строки.
+    title: typographText(talk.data.title, locale),
     speakers: people.map((speaker) => speaker.data.name).join(', '),
     photoFile: withPhoto ? frontmatterFileOf(withPhoto, 'photo', readSource) : undefined,
   };

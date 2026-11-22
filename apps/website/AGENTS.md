@@ -64,7 +64,8 @@ scripts/        # check-seo, seo-checks (SEO gate over dist), new-entry (new:* g
   in Russian, ellipsis. Text in `code`, `pre`, `kbd` is left alone. Rules that harm text about CSS (decimal
   comma, fractions, math signs, ISO dates, phone numbers, keyboard-layout fixes) are off in `DISABLED_RULES`;
   edge trimming is off because a node is a piece of a paragraph. Frontmatter strings (titles, names,
-  descriptions) are not typographed.
+  descriptions) are not typographed on pages; text drawn on images is (`typographText` on the talk cover title and
+  the OG card title and meta), because satori wraps lines itself and would leave a preposition at a line end.
 - `site` is `https://css.moscow`, `trailingSlash: 'always'`: canonical, hreflang
   and internal links are absolute/with a trailing slash.
 - **Content entries** are created with `pnpm new:event | new:talk | new:speaker |

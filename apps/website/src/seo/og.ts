@@ -2,6 +2,7 @@ import { CARD_SIZES, type CardInput, type CardSize } from '@moscowcss/og';
 import { localeOf, slugOf, type Catalog } from '../content/catalog';
 import { eventWhen, fillTemplate } from '../content/format';
 import { newsDateText } from '../content/news';
+import { typographText } from '../content/typography';
 import { useTranslations } from '../i18n';
 import { trimTrailingSlashes, type PublicPage } from './pages';
 
@@ -57,6 +58,15 @@ export const cardMetaOf = (page: Pick<PublicPage, 'path' | 'kind'>) => ({
  * на самой странице: московские день и время на языке страницы.
  */
 export function cardInputOf(
+  page: Pick<PublicPage, 'kind' | 'entry' | 'locale'>,
+  catalog: Pick<Catalog, 'events' | 'speakers'>,
+): Omit<CardInput, 'size'> {
+  const input = cardTextOf(page, catalog);
+  // Строки на картинке переносит satori: неразрывные пробелы типографа держат предлог со словом.
+  return { ...input, title: typographText(input.title, page.locale), meta: typographText(input.meta, page.locale) };
+}
+
+function cardTextOf(
   page: Pick<PublicPage, 'kind' | 'entry' | 'locale'>,
   catalog: Pick<Catalog, 'events' | 'speakers'>,
 ): Omit<CardInput, 'size'> {

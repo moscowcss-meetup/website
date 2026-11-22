@@ -38,4 +38,10 @@ describe('обложка доклада', () => {
     });
     expect(talkCoverSourceOf(talk('ru/y', { event: 'online-2021', speakers: ['no-photo'] }), catalog, read).label).toBe('MOSCOWCSS_2021');
   });
+
+  it('название типографировано: предлог держится за следующее слово', () => {
+    const catalog = { events: [event('ru/7')], speakers: [] };
+    const source = talkCoverSourceOf(talk('ru/x', { event: '7', speakers: [], title: 'Гиперссылки в музыке: кто у кого украл' }), catalog, () => '');
+    expect(source.title).toBe('Гиперссылки в музыке: кто у кого украл');
+  });
 });
