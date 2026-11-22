@@ -2,7 +2,7 @@
 event: "32"
 speakers:
   - pavel-alekseev
-title: "Hyperlinks in music: who stole from whom and why"
+title: "A hyperlink is not always plagiarism, but sometimes a window to other worlds and meanings"
 ---
 
 Does everything in music have to be new? And if we recognise something, is it always plagiarism? Do composers steal or borrow: from themselves, from colleagues, from folk tradition? And to what end?
