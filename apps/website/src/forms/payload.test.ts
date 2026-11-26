@@ -27,32 +27,32 @@ describe('cfp', () => {
 
 describe('feedback', () => {
   const speakers = [
-    { speakerId: 's1', rating: '5', comment: ' супер ' },
-    { speakerId: 's2', rating: undefined, comment: '' },
+    { speakerId: '1', rating: '5', comment: ' супер ' },
+    { speakerId: '2', rating: undefined, comment: '' },
   ];
 
   it('оценка площадки обязательна только очно', () => {
-    const base = { eventId: 'e', attendance: 'online', eventRating: '4' };
+    const base = { eventId: '7', attendance: 'online', eventRating: '4' };
     expect(validateFeedback(base, [])).toEqual({});
     expect(validateFeedback({ ...base, attendance: 'offline' }, [])).toEqual({ venueRating: 'required' });
   });
 
   it('требует оценку каждого докладчика', () => {
-    expect(validateFeedback({ eventId: 'e', attendance: 'online', eventRating: '4' }, speakers)).toEqual({ 'speakers.1.rating': 'required' });
+    expect(validateFeedback({ eventId: '7', attendance: 'online', eventRating: '4' }, speakers)).toEqual({ 'speakers.1.rating': 'required' });
   });
 
   it('у онлайн-зрителя блока площадки в запросе нет, даже если он был заполнен раньше', () => {
-    const body = feedbackBody({ eventId: 'e', attendance: 'online', eventRating: '4', venueRating: '3', venueComment: 'x' }, speakers);
+    const body = feedbackBody({ eventId: '7', attendance: 'online', eventRating: '4', venueRating: '3', venueComment: 'x' }, speakers);
     expect(body.venueRating).toBeUndefined();
     expect(body.venueComment).toBeUndefined();
     expect(body.speakers).toEqual([
-      { speakerId: 's1', rating: 5, comment: 'супер' },
-      { speakerId: 's2', rating: undefined, comment: undefined },
+      { speakerId: 1, rating: 5, comment: 'супер' },
+      { speakerId: 2, rating: undefined, comment: undefined },
     ]);
   });
 
   it('очно блок площадки уходит', () => {
-    const body = feedbackBody({ eventId: 'e', attendance: 'offline', eventRating: '4', venueRating: '3', venueComment: ' ок ' }, []);
+    const body = feedbackBody({ eventId: '7', attendance: 'offline', eventRating: '4', venueRating: '3', venueComment: ' ок ' }, []);
     expect(body).toMatchObject({ attendance: 'offline', eventRating: 4, venueRating: 3, venueComment: 'ок' });
   });
 });
@@ -65,10 +65,10 @@ describe('question', () => {
   });
 
   it('вопрос организаторам не несёт митап и докладчика', () => {
-    expect(questionBody({ target: 'organizers', speakerId: 's1', text: 'Привет' }, 'e1')).toMatchObject({ eventId: undefined, speakerId: undefined });
-    expect(questionBody({ target: 'speaker', speakerId: 's1', text: 'Привет', contact: ' ' }, 'e1')).toMatchObject({
-      eventId: 'e1',
-      speakerId: 's1',
+    expect(questionBody({ target: 'organizers', speakerId: '1', text: 'Привет' }, '7')).toMatchObject({ eventId: undefined, speakerId: undefined });
+    expect(questionBody({ target: 'speaker', speakerId: '1', text: 'Привет', contact: ' ' }, '7')).toMatchObject({
+      eventId: 7,
+      speakerId: 1,
       contact: undefined,
     });
   });

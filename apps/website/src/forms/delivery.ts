@@ -92,12 +92,23 @@ export interface CurrentEvent {
 
 export type CurrentEventResult = { kind: 'found'; event: CurrentEvent } | { kind: 'none' } | { kind: 'unavailable' };
 
-const isCurrentEvent = (value: unknown): value is CurrentEvent =>
+// У бота id — целые числа из базы; в DOM (option.value, FormData) они живут строками
+const isId = (value: unknown): value is number => typeof value === 'number' && Number.isInteger(value) && value > 0;
+
+interface CurrentEventResponse {
+  id: number;
+  title: string;
+  startsAt: string;
+  venue: string;
+  speakers: { id: number; name: string; talkTitle?: string }[];
+}
+
+const isCurrentEvent = (value: unknown): value is CurrentEventResponse =>
   isRecord(value) &&
-  typeof value['id'] === 'string' &&
+  isId(value['id']) &&
   typeof value['title'] === 'string' &&
   Array.isArray(value['speakers']) &&
-  value['speakers'].every((speaker) => isRecord(speaker) && typeof speaker['id'] === 'string' && typeof speaker['name'] === 'string');
+  value['speakers'].every((speaker) => isRecord(speaker) && isId(speaker['id']) && typeof speaker['name'] === 'string');
 
 /** Текущий митап для отзыва и вопроса: 404 значит «сейчас нет такого митапа», остальные неудачи — «не получилось». */
 export async function fetchCurrentEvent(options: DeliveryOptions = {}): Promise<CurrentEventResult> {
@@ -107,7 +118,14 @@ export async function fetchCurrentEvent(options: DeliveryOptions = {}): Promise<
   if (!result.response.ok) return { kind: 'unavailable' };
   const body = await bodyOf(result.response);
   if (!isCurrentEvent(body)) return { kind: 'unavailable' };
-  return { kind: 'found', event: { ...body, speakers: body.speakers.map((speaker) => ({ talkTitle: '', ...speaker })) } };
+  return {
+    kind: 'found',
+    event: {
+      ...body,
+      id: String(body.id),
+      speakers: body.speakers.map((speaker) => ({ name: speaker.name, talkTitle: speaker.talkTitle ?? '', id: String(speaker.id) })),
+    },
+  };
 }
 
 // Один ключ на одну попытку отправки: повтор того же содержимого после неудачи идёт с тем же ключом,

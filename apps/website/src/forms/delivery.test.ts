@@ -69,17 +69,21 @@ describe('submitForm', () => {
 });
 
 describe('fetchCurrentEvent', () => {
+  // Так отвечает бот: id — числа из базы
   const event = {
-    id: 'e1',
+    id: 1,
     title: 'Митап',
-    startsAt: '2026-12-01T18:00:00+03:00',
+    startsAt: '2026-12-01T15:00:00.000Z',
     venue: 'Офис',
-    speakers: [{ id: 's1', name: 'Анна', talkTitle: 'Grid' }],
+    speakers: [{ id: 3, name: 'Анна', talkTitle: 'Grid' }],
   };
 
-  it('возвращает митап', async () => {
+  it('возвращает митап с id строками для DOM', async () => {
     const fetchImpl = vi.fn().mockResolvedValue(json(200, event));
-    expect(await fetchCurrentEvent({ bases, fetchImpl })).toEqual({ kind: 'found', event });
+    expect(await fetchCurrentEvent({ bases, fetchImpl })).toEqual({
+      kind: 'found',
+      event: { ...event, id: '1', speakers: [{ id: '3', name: 'Анна', talkTitle: 'Grid' }] },
+    });
   });
 
   it('404 — митапа нет, без повтора', async () => {
@@ -96,6 +100,8 @@ describe('fetchCurrentEvent', () => {
   it('ответ не по контракту — unavailable', async () => {
     const fetchImpl = vi.fn().mockResolvedValue(json(200, { id: 1 }));
     expect(await fetchCurrentEvent({ bases, fetchImpl })).toEqual({ kind: 'unavailable' });
+    const stringIds = vi.fn().mockResolvedValue(json(200, { ...event, id: 'e1' }));
+    expect(await fetchCurrentEvent({ bases, fetchImpl: stringIds })).toEqual({ kind: 'unavailable' });
   });
 });
 

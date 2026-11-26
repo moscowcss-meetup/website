@@ -20,6 +20,12 @@ const optional = (value: string | undefined): string | undefined => {
   return text === '' ? undefined : text;
 };
 
+// Бот принимает id митапа и докладчика только целым числом
+const idOf = (value: string | undefined): number | undefined => {
+  const text = clean(value);
+  return /^[1-9]\d*$/.test(text) ? Number(text) : undefined;
+};
+
 const RATINGS = ['1', '2', '3', '4', '5'];
 const ratingOf = (value: string | undefined): number | undefined => (value !== undefined && RATINGS.includes(value) ? Number(value) : undefined);
 
@@ -60,6 +66,7 @@ export const isOffline = (values: FieldValues): boolean => clean(values['attenda
 export function validateFeedback(values: FieldValues, speakers: readonly SpeakerValues[]): FieldErrors {
   const errors: FieldErrors = {};
   check(errors, 'eventId', values['eventId']);
+  if (!errors['eventId'] && idOf(values['eventId']) === undefined) errors['eventId'] = 'invalid';
   check(errors, 'attendance', values['attendance'], ['online', 'offline']);
   check(errors, 'eventRating', values['eventRating'], RATINGS);
   if (isOffline(values)) check(errors, 'venueRating', values['venueRating'], RATINGS);
@@ -70,7 +77,7 @@ export function validateFeedback(values: FieldValues, speakers: readonly Speaker
 export function feedbackBody(values: FieldValues, speakers: readonly SpeakerValues[]) {
   const offline = isOffline(values);
   return {
-    eventId: clean(values['eventId']),
+    eventId: idOf(values['eventId']),
     attendance: clean(values['attendance']),
     eventRating: ratingOf(values['eventRating']),
     eventComment: optional(values['eventComment']),
@@ -78,7 +85,7 @@ export function feedbackBody(values: FieldValues, speakers: readonly SpeakerValu
     venueRating: offline ? ratingOf(values['venueRating']) : undefined,
     venueComment: offline ? optional(values['venueComment']) : undefined,
     speakers: speakers.map((speaker) => ({
-      speakerId: speaker.speakerId,
+      speakerId: idOf(speaker.speakerId),
       rating: ratingOf(speaker.rating),
       comment: optional(speaker.comment),
     })),
@@ -98,8 +105,8 @@ export function questionBody(values: FieldValues, eventId: string | undefined) {
   const toSpeaker = clean(values['target']) === 'speaker';
   return {
     target: clean(values['target']),
-    eventId: toSpeaker ? eventId : undefined,
-    speakerId: toSpeaker ? clean(values['speakerId']) : undefined,
+    eventId: toSpeaker ? idOf(eventId) : undefined,
+    speakerId: toSpeaker ? idOf(values['speakerId']) : undefined,
     text: clean(values['text']),
     contact: optional(values['contact']),
     website: values['website'] ?? '',
